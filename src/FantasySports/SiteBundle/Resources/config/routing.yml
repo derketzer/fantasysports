@@ -1,0 +1,3 @@
+fantasy_sports_site_homepage:
+    path:     /
+    defaults: { _controller: FantasySportsSiteBundle:Index:index }

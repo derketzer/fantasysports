@@ -1,0 +1,4 @@
+services:
+#    fantasy_sports_site.example:
+#        class: FantasySports\SiteBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
