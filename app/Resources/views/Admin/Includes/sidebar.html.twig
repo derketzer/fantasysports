@@ -1,0 +1,50 @@
+<aside id="sidebar">
+    <nav id="navigation" class="collapse">
+        <ul>
+            <li class="active">
+                <span title="General">
+                    <i class="icon-home"></i>
+                    <span class="nav-title">General</span>
+                </span>
+
+                <ul class="inner-nav">
+                    <li class="active">
+                        <a href="{{ path('fantasy_sports_admin_dashboard') }}">
+                            <i class="icol-dashboard"></i> Dashboard
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <span title="General">
+                    <i class="icon-archive"></i>
+                    <span class="nav-title">Pases</span>
+                </span>
+
+                <ul class="inner-nav">
+                    <li class="active">
+                        <a href="{{ path('fantasy_sports_admin_pass_list') }}">
+                            <i class="icol-color-swatch-1"></i> Todos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('fantasy_sports_admin_pass_add') }}">
+                            <i class="icol-add"></i> Nuevo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../simple/dashboard.html">
+                            <i class="icol-accept"></i> Activos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="affix.html">
+                            <i class="icol-cross"></i> Pasados
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</aside>

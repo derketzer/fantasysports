@@ -1,0 +1,156 @@
+<header id="header" class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="brand-wrap pull-left">
+                <div class="brand-img">
+                    <a class="brand" href="{{ path('fantasy_sports_admin_dashboard') }}">
+                        <img src="https://s3.amazonaws.com/fantasysports.mx/admin-assets/images/logo_villano.jpg" alt="" style="width: 40px; height: 40px;">
+                        &nbsp;El Villano Chelero
+                    </a>
+                </div>
+            </div>
+
+            <div id="header-right" class="clearfix">
+                <div id="dropdown-lists">
+                    <div class="item-wrap">
+                        <a class="item" href="#" data-toggle="dropdown">
+                            <span class="item-icon"><i class="icon-shopping-cart"></i></span>
+                            <span class="item-label">Puntos</span>
+                            <span class="item-count">
+                                {% if userPoints is defined %}
+                                    {{ userPoints|number_format(0, '.', ',') }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item-wrap">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <span class="thumbnail"><img src="https://s3.amazonaws.com/fantasysports.mx/admin-assets/images/pp.jpg" alt=""></span>
+                                                    <span class="details">
+                                                        <strong>John Doe</strong> commented on your photo
+                                                        <span class="time">13 minutes ago</span>
+                                                    </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="dropdown-lists">
+                    <div class="item-wrap">
+                        <a class="item" href="#" data-toggle="dropdown">
+                            <span class="item-icon"><i class="icon-exclamation-sign"></i></span>
+                            <span class="item-label">Notificaciones</span>
+                            <span class="item-count">4</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item-wrap">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <span class="thumbnail"><img src="https://s3.amazonaws.com/fantasysports.mx/admin-assets/images/pp.jpg" alt=""></span>
+                                                    <span class="details">
+                                                        <strong>John Doe</strong> commented on your photo
+                                                        <span class="time">13 minutes ago</span>
+                                                    </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="thumbnail"><img src="https://s3.amazonaws.com/fantasysports.mx/admin-assets/images/pp.jpg" alt=""></span>
+                                                    <span class="details">
+                                                        <strong>Jane Roe</strong> commented on your photo
+                                                        <span class="time">27 minutes ago</span>
+                                                    </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="thumbnail"><img src="https://s3.amazonaws.com/fantasysports.mx/admin-assets/images/pp.jpg" alt=""></span>
+                                                    <span class="details">
+                                                        <strong>Billy John</strong> commented on your photo
+                                                        <span class="time">43 minutes ago</span>
+                                                    </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Ver todas las notificaciones</a></li>
+                        </ul>
+                    </div>
+                    <div class="item-wrap">
+                        <a class="item" href="#" data-toggle="dropdown">
+                            <span class="item-icon"><i class="icon-envelope"></i></span>
+                            <span class="item-label">Mensajes</span>
+                            <span class="item-count">16</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item-wrap">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <span class="thumbnail"><img src="https://s3.amazonaws.com/fantasysports.mx/admin-assets/images/pp.jpg" alt=""></span>
+                                                    <span class="details">
+                                                        <strong>John Doe</strong><br> Hello, do you have time to go out tomorrow?
+                                                        <span class="time">13 minutes ago</span>
+                                                    </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="thumbnail"><img src="https://s3.amazonaws.com/fantasysports.mx/admin-assets/images/pp.jpg" alt=""></span>
+                                                    <span class="details">
+                                                        <strong>Jane Roe</strong><br> Hey, the reports said that you were...
+                                                        <span class="time">27 minutes ago</span>
+                                                    </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="thumbnail"><img src="https://s3.amazonaws.com/fantasysports.mx/admin-assets/images/pp.jpg" alt=""></span>
+                                                    <span class="details">
+                                                        <strong>Billy John</strong><br> Can I borrow your new camera for taking...
+                                                        <span class="time">About an hour ago</span>
+                                                    </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="mail.html">Ver todos los mensajes</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="header-functions" class="pull-right">
+                    <div id="user-info" class="clearfix">
+                        <span class="info">
+                            Bienvenido
+                            <span class="name">Der Ketzer</span>
+                        </span>
+
+                        <div class="avatar">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                <img src="https://s3.amazonaws.com/fantasysports.mx/admin-assets/images/pp.jpg" alt="Avatar">
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="profile.html"><i class="icol-user"></i> Mi Perfil</a></li>
+                                <li><a href="#"><i class="icol-layout"></i> Mis pases</a></li>
+                                <li class="divider"></li>
+                                <li><a href="index.html"><i class="icol-key"></i> Salir</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="logout-ribbon">
+                        <a href="index.html"><i class="icon-off"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

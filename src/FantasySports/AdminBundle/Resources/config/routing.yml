@@ -1,3 +1,19 @@
-fantasy_sports_admin_homepage:
+fantasy_sports_admin_login:
     path:     /
-    defaults: { _controller: FantasySportsAdminBundle:Default:index }
+    defaults: { _controller: FantasySportsAdminBundle:Index:login }
+
+fantasy_sports_admin_dashboard:
+    path:     /dashboard
+    defaults: { _controller: FantasySportsAdminBundle:Index:dashboard }
+
+fantasy_sports_admin_pass_save:
+    path:     /pass/save
+    defaults: { _controller: FantasySportsAdminBundle:Pass:save }
+
+fantasy_sports_admin_pass_add:
+    path:     /pass
+    defaults: { _controller: FantasySportsAdminBundle:Pass:add }
+
+fantasy_sports_admin_pass_list:
+    path:     /passes
+    defaults: { _controller: FantasySportsAdminBundle:Pass:list }

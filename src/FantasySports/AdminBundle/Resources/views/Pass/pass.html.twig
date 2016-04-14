@@ -1,0 +1,106 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Boleto' %}
+{% set pageDescription = 'Nuevo boleto' %}
+{% set userPoints = '1000' %}
+
+{% set scriptsToLoad = ['pass.js'] %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Pass</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title"><i class="icon-tag"></i> Selecciona tus opciones</span>
+            </div>
+            <div class="widget-content form-container">
+                <form class="vertical-form" action="{{ path('fantasy_sports_admin_pass_save') }}" method="POST">
+                    <fieldset>
+                        <legend>Datos del evento</legend>
+                        <div class="control-group">
+                            <label class="control-label" for="input16">Evento <span class="required">*</span></label>
+                            <div class="controls">
+                                <select id="input16" name="wizard[period]" class="required span12">
+                                    <option>Evento</option>
+                                    <option selected>Bayern - Barça</option>
+                                    <option>Benfica - Atlético</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="input16">Fecha</label>
+                            <div class="controls controls-row">
+                                <input type="text" id="input06" class="span6" value="13 de Abril, 2016" disabled>
+                                <input type="text" id="input06" class="span6" value="13:45" disabled>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Tipo de boleto</legend>
+                        <div class="control-group">
+                            <label class="control-label">Tipo <span class="required">*</span></label>
+                            <div class="controls">
+                                <label class="radio"><input type="radio" name="wizard[type]" class="required uniform" checked> Quiniela</label>
+                                <label class="radio"><input type="radio" name="wizard[type]" class="required uniform"> Marcador</label>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Quiniela <span class="required">*</span></label>
+                            <div class="controls">
+                                <label class="radio"><input type="radio" name="wizard[quiniela]" class="required uniform" checked> Local</label>
+                                <label class="radio"><input type="radio" name="wizard[quiniela]" class="required uniform"> Empate</label>
+                                <label class="radio"><input type="radio" name="wizard[quiniela]" class="required uniform"> Visitante</label>
+                            </div>
+                        </div>
+                        <div class="control-group" style="display:none;">
+                            <label class="control-label">Marcador <span class="required">*</span></label>
+                            <div class="controls controls-row">
+                                <input type="text" class="span6" placeholder="Local" data-accept="numbers">
+                                <input type="text" class="span6" placeholder="Visitante" data-accept="numbers">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Premio</legend>
+                        <div class="control-group">
+                            <div class="controls">
+                                <select id="picklist-ex" name="picklist[]">
+                                    <option>Botella</option>
+                                    <option>Bomba Villana</option>
+                                    <option selected>Revolver</option>
+                                    <option selected>Perla Negra</option>
+                                    <option>Satanás</option>
+                                    <option>Venganza Villana</option>
+                                </select>
+                                <p class="help-block">Usa shift o control para seleccionar varios elementos</p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="input13">Puntos villanos</label>
+                            <div class="controls">
+                                <h1 id="pass-points">
+                                    200
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            <button class="btn" type="reset">Cancelar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
