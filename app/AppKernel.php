@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new FantasySports\SiteBundle\FantasySportsSiteBundle(),
             new FantasySports\AdminBundle\FantasySportsAdminBundle(),
             new Endroid\Bundle\QrCodeBundle\EndroidQrCodeBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

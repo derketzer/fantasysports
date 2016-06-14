@@ -1,6 +1,9 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 fantasy_sports_admin:
     resource: "@FantasySportsAdminBundle/Resources/config/routing.yml"
-    prefix:   /admin
+    prefix:   /book
 
 fantasy_sports_site:
     resource: "@FantasySportsSiteBundle/Resources/config/routing.yml"

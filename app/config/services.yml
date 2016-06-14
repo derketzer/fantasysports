@@ -4,6 +4,10 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    mongo_client:
+        class: MongoClient
+        arguments: ['mongodb://%mongodb_host%:27017']
+
+    session.handler.mongo:
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MongoDbSessionHandler
+        arguments: ['@mongo_client', '%mongo.session.options%']

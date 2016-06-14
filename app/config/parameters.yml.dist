@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    mongo.session.options:
+        database: session_db
+        collection: session
+    mongodb_host: 127.0.0.1
