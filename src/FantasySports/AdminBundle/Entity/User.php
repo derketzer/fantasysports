@@ -18,8 +18,30 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Wallet")
+     * @ORM\JoinColumn(name="wallet_id", referencedColumnName="id")
+     */
+    private $wallet;
+
     public function __construct()
     {
         parent::__construct();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWallet()
+    {
+        return $this->wallet;
+    }
+
+    /**
+     * @param mixed $wallet
+     */
+    public function setWallet($wallet)
+    {
+        $this->wallet = $wallet;
     }
 }

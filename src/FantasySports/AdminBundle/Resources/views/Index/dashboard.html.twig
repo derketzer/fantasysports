@@ -2,7 +2,7 @@
 
 {% set pageTitle = 'Dashboard' %}
 {% set pageDescription = 'Resumen de mis actividades' %}
-{% set userPoints = '1000' %}
+{% set userPoints = app.user.wallet.balance %}
 
 {% set scriptsToLoad = ['dashboard.js'] %}
 

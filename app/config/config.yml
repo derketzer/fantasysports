@@ -6,11 +6,11 @@ imports:
     - { resource: "@FantasySportsAdminBundle/Resources/config/services.yml" }
 
 parameters:
-    locale: en
+    locale: es
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -50,8 +50,23 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
+                mappings:
+                    gedmo_loggable:
+                        type: annotation
+                        prefix: Gedmo\Loggable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+                        alias: GedmoLoggable # (optional) it will default to the name set for the mappingmapping
+                        is_bundle: false
+
+stof_doctrine_extensions:
+    default_locale: es
+    orm:
+        default:
+            timestampable: false
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -75,3 +90,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: FantasySports\AdminBundle\Entity\User
+    registration:
+        confirmation:
+            enabled: true
+    from_email:
+        address:        noreply@fantasysports.mx
+        sender_name:    Fantasy Sports Team
