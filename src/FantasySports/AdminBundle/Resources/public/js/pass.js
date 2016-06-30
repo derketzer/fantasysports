@@ -9,4 +9,14 @@ $(document).ready(function() {
             targetListLabel: "Opciones seleccionadas"
         });
     }
+
+    $('#tipo-boleto input:radio').change(function(){
+        $('.boleto').hide();
+
+        if($(this).val() == 1){
+            $('#boleto-quiniela').show();
+        }else if($(this).val() == 2){
+            $('#boleto-marcador').show();
+        }
+    });
 });

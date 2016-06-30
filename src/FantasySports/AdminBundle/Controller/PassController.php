@@ -8,7 +8,10 @@ class PassController extends Controller
 {
     public function addAction()
     {
-        return $this->render('FantasySportsAdminBundle:Pass:pass.html.twig');
+        $sportMatchRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:SportMatch');
+        $matches = $sportMatchRespository->findBy(Array('phase'=>1, 'jornada'=>1), Array('matchDate'=>'ASC'));
+
+        return $this->render('FantasySportsAdminBundle:Pass:pass.html.twig', Array('matches'=>$matches));
     }
     
     public function saveAction()

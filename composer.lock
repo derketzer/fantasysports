@@ -816,21 +816,22 @@
         },
         {
             "name": "endroid/qrcode",
-            "version": "1.6.4",
+            "version": "1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/endroid/QrCode.git",
-                "reference": "76ea6d7f5e545732094d5baf94de8aceae32c12c"
+                "reference": "af9b4f307701e18de9fc4341b06080afb363c14e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/endroid/QrCode/zipball/76ea6d7f5e545732094d5baf94de8aceae32c12c",
-                "reference": "76ea6d7f5e545732094d5baf94de8aceae32c12c",
+                "url": "https://api.github.com/repos/endroid/QrCode/zipball/af9b4f307701e18de9fc4341b06080afb363c14e",
+                "reference": "af9b4f307701e18de9fc4341b06080afb363c14e",
                 "shasum": ""
             },
             "require": {
                 "ext-gd": "*",
-                "php": ">=5.3.0"
+                "php": ">=5.3.0",
+                "symfony/options-resolver": "^2.3|^3.0"
             },
             "type": "library",
             "extra": {
@@ -862,26 +863,27 @@
                 "qr",
                 "qrcode"
             ],
-            "time": "2016-04-08 21:44:39"
+            "time": "2016-06-25 14:53:44"
         },
         {
             "name": "endroid/qrcode-bundle",
-            "version": "1.6.4",
+            "version": "1.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/endroid/EndroidQrCodeBundle.git",
-                "reference": "b90812e117757cd7282ac85c466ff3f590253363"
+                "reference": "f8f12fd9f6414a98e21b85acac4859d40b70130e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/endroid/EndroidQrCodeBundle/zipball/b90812e117757cd7282ac85c466ff3f590253363",
-                "reference": "b90812e117757cd7282ac85c466ff3f590253363",
+                "url": "https://api.github.com/repos/endroid/EndroidQrCodeBundle/zipball/f8f12fd9f6414a98e21b85acac4859d40b70130e",
+                "reference": "f8f12fd9f6414a98e21b85acac4859d40b70130e",
                 "shasum": ""
             },
             "require": {
                 "endroid/qrcode": "^1.5.7",
                 "php": ">=5.3.0",
                 "sensio/framework-extra-bundle": "^3.0",
+                "symfony/dependency-injection": "^2.4|^3.0",
                 "symfony/http-kernel": "^2.3|^3.0"
             },
             "require-dev": {
@@ -920,7 +922,7 @@
                 "qrcode",
                 "symfony"
             ],
-            "time": "2016-04-08 22:57:34"
+            "time": "2016-04-24 18:11:33"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -928,12 +930,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "d1fccc6335b74beca94525551cacc06b256ed261"
+                "reference": "298f27ce696deaa6ecd72e6ba563f892a17e0512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/d1fccc6335b74beca94525551cacc06b256ed261",
-                "reference": "d1fccc6335b74beca94525551cacc06b256ed261",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/298f27ce696deaa6ecd72e6ba563f892a17e0512",
+                "reference": "298f27ce696deaa6ecd72e6ba563f892a17e0512",
                 "shasum": ""
             },
             "require": {
@@ -989,7 +991,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-05-27 12:14:43"
+            "time": "2016-06-21 10:34:42"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1337,16 +1339,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.6",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0"
+                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/ffe306d09c1f2bad721237f63b2169d1b78253d0",
-                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
+                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
                 "shasum": ""
             },
             "require": {
@@ -1385,7 +1387,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2016-04-25 20:50:31"
+            "time": "2016-06-23 16:11:33"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2203,16 +2205,16 @@
     "packages-dev": [
         {
             "name": "sensio/generator-bundle",
-            "version": "v3.0.6",
+            "version": "v3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "ac91535054d025937d897d78ebb5fc2da5e955a4"
+                "reference": "d1be460925376703a470a3ac6ec034eb7eab3892"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/ac91535054d025937d897d78ebb5fc2da5e955a4",
-                "reference": "ac91535054d025937d897d78ebb5fc2da5e955a4",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/d1be460925376703a470a3ac6ec034eb7eab3892",
+                "reference": "d1be460925376703a470a3ac6ec034eb7eab3892",
                 "shasum": ""
             },
             "require": {
@@ -2251,11 +2253,11 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2016-02-26 04:36:01"
+            "time": "2016-06-20 05:58:05"
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
