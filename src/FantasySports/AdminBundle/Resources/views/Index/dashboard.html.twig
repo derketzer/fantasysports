@@ -25,7 +25,7 @@
                 </span>
                 <span class="digit">
                     <span class="text">Pases adquiridos</span>
-                    100
+                    {{ pasesAdquiridos|number_format(0, '.', ',') }}
                 </span>
             </a>
         </li>
@@ -36,7 +36,7 @@
                 </span>
                 <span class="digit">
                     <span class="text">Pases ganados</span>
-                    80
+                    {{ pasesGanados|number_format(0, '.', ',') }}
                 </span>
             </a>
         </li>
@@ -47,7 +47,7 @@
                 </span>
                 <span class="digit">
                     <span class="text">Pases pendientes</span>
-                    15
+                    {{ pasesPendientes|number_format(0, '.', ',') }}
                 </span>
             </a>
         </li>
@@ -58,7 +58,7 @@
                 </span>
                 <span class="digit">
                     <span class="text">Pases perdidos</span>
-                    5
+                    {{ pasesPerdidos|number_format(0, '.', ',') }}
                 </span>
             </a>
         </li>

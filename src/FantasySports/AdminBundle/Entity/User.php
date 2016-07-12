@@ -20,7 +20,7 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToOne(targetEntity="Wallet")
-     * @ORM\JoinColumn(name="wallet_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="wallet_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $wallet;
 

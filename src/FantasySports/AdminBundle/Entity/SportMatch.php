@@ -23,7 +23,7 @@ class SportMatch
 
     /**
      * @ORM\ManyToOne(targetEntity="Phase")
-     * @ORM\JoinColumn(name="pahse_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="pahse_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $phase;
 
@@ -36,7 +36,7 @@ class SportMatch
 
     /**
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="homeSportMatches")
-     * @ORM\JoinColumn(name="home_team_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="home_team_id", referencedColumnName="id", onDelete="SET NULL")
      **/
     private $homeTeam;
 
@@ -45,11 +45,11 @@ class SportMatch
      *
      * @ORM\Column(name="home_score", type="integer")
      */
-    private $homeScore;
+    private $homeScore=0;
 
     /**
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="awaySportMatches")
-     * @ORM\JoinColumn(name="away_team_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="away_team_id", referencedColumnName="id", onDelete="SET NULL")
      **/
     private $awayTeam;
 
@@ -58,7 +58,7 @@ class SportMatch
      *
      * @ORM\Column(name="away_score", type="integer")
      */
-    private $awayScore;
+    private $awayScore=0;
 
     /**
      * @var \DateTime

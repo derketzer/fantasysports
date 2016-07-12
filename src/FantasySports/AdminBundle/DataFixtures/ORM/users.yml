@@ -1,0 +1,11 @@
+FantasySports\AdminBundle\Entity\User:
+    User1:
+        wallet: '@Wallet1'
+        username: der_ketzer
+        usernameCanonical: der_ketzer
+        email: staff@katanastudios.com
+        emailCanonical: staff@katanastudios.com
+        enabled: 1
+        salt: j0hdllvfa9wgcc4cokgc4g8k08c040
+        password: '$2y$12$fVjgAh4GqV.XklXjnp1SB.bILMJxiMT2gpDh2.yRw6l8BJCkbxhTq'
+        confirmationToken: 'QxMZC_SbcN2N80_8g55ozKjQdqu3wYnHeOn0rxZy4YM'

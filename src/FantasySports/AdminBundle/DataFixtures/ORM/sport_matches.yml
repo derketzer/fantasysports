@@ -1,0 +1,194 @@
+FantasySports\AdminBundle\Entity\SportMatch:
+    SportMatch1:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team1'
+        awayTeam: '@Team2'
+        matchDate: <(new \DateTime('2016-09-08 19:30:00'))>
+    SportMatch2:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team3'
+        awayTeam: '@Team4'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch3:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team5'
+        awayTeam: '@Team6'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch4:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team7'
+        awayTeam: '@Team8'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch5:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team9'
+        awayTeam: '@Team10'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch6:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team11'
+        awayTeam: '@Team12'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch7:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team13'
+        awayTeam: '@Team14'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch8:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team15'
+        awayTeam: '@Team16'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch9:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team17'
+        awayTeam: '@Team18'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch10:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team19'
+        awayTeam: '@Team20'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch11:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team21'
+        awayTeam: '@Team22'
+        matchDate: <(new \DateTime('2016-09-11 15:05:00'))>
+    SportMatch12:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team23'
+        awayTeam: '@Team24'
+        matchDate: <(new \DateTime('2016-09-11 15:25:00'))>
+    SportMatch13:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team25'
+        awayTeam: '@Team26'
+        matchDate: <(new \DateTime('2016-09-11 15:25:00'))>
+    SportMatch14:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team27'
+        awayTeam: '@Team28'
+        matchDate: <(new \DateTime('2016-09-11 19:30:00'))>
+    SportMatch15:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team29'
+        awayTeam: '@Team30'
+        matchDate: <(new \DateTime('2016-09-12 18:10:00'))>
+    SportMatch16:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team31'
+        awayTeam: '@Team32'
+        matchDate: <(new \DateTime('2016-09-12 21:20:00'))>
+
+    SportMatch1:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team1'
+        awayTeam: '@Team2'
+        matchDate: <(new \DateTime('2016-09-08 19:30:00'))>
+    SportMatch2:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team3'
+        awayTeam: '@Team4'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch3:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team5'
+        awayTeam: '@Team6'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch4:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team7'
+        awayTeam: '@Team8'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch5:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team9'
+        awayTeam: '@Team10'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch6:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team11'
+        awayTeam: '@Team12'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch7:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team13'
+        awayTeam: '@Team14'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch8:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team15'
+        awayTeam: '@Team16'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch9:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team17'
+        awayTeam: '@Team18'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch10:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team19'
+        awayTeam: '@Team20'
+        matchDate: <(new \DateTime('2016-09-11 12:00:00'))>
+    SportMatch11:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team21'
+        awayTeam: '@Team22'
+        matchDate: <(new \DateTime('2016-09-11 15:05:00'))>
+    SportMatch12:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team23'
+        awayTeam: '@Team24'
+        matchDate: <(new \DateTime('2016-09-11 15:25:00'))>
+    SportMatch13:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team25'
+        awayTeam: '@Team26'
+        matchDate: <(new \DateTime('2016-09-11 15:25:00'))>
+    SportMatch14:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team27'
+        awayTeam: '@Team28'
+        matchDate: <(new \DateTime('2016-09-11 19:30:00'))>
+    SportMatch15:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team29'
+        awayTeam: '@Team30'
+        matchDate: <(new \DateTime('2016-09-12 18:10:00'))>
+    SportMatch16:
+        phase: '@Phase1'
+        jornada: 1
+        homeTeam: '@Team31'
+        awayTeam: '@Team32'
+        matchDate: <(new \DateTime('2016-09-12 21:20:00'))>

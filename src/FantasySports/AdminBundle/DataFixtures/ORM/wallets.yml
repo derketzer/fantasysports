@@ -1,0 +1,5 @@
+FantasySports\AdminBundle\Entity\Wallet:
+    Wallet1:
+        balance: 1000
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>

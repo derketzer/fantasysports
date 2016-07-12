@@ -73,8 +73,8 @@
                                 {% set fecha = "" %}
                                 {% if matches is defined %}
                                     {% for match in matches %}
-                                        {% if match.matchDate != fecha %}
-                                            {% set fecha = match.matchDate %}
+                                        {% if match.matchDate|date('Y-m-d') != fecha %}
+                                            {% set fecha = match.matchDate|date('Y-m-d') %}
                                 </div>
                                 <label class="control-label" for="input16">
                                     <b>{{ match.matchDate|date('l, d F Y') }}</b>
@@ -100,14 +100,14 @@
                                                 {{ match.matchDate|date('H:i') }}
                                             </div>
                                             <div class="span3">
-                                                <input type="radio" name="wizard[type]" class="required uniform">
+                                                <input type="radio" name="match[{{ match.id }}]" class="required uniform">
                                                 {{ match.homeTeam.name }}
                                             </div>
                                             <div class="span3">
-                                                <input type="radio" name="wizard[type]" class="required uniform">
+                                                <input type="radio" name="match[{{ match.id }}]" class="required uniform">
                                             </div>
                                             <div class="span3">
-                                                <input type="radio" name="wizard[type]" class="required uniform">
+                                                <input type="radio" name="match[{{ match.id }}]" class="required uniform">
                                                 {{ match.awayTeam.name }}
                                             </div>
                                         </div>

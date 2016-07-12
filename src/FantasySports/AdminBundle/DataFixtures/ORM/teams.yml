@@ -1,0 +1,225 @@
+FantasySports\AdminBundle\Entity\Team:
+    Team1:
+        id: 1
+        name: Panthers
+        shortName: Panthers
+        slug: panthers
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team2:
+        id: 2
+        name: Broncos
+        shortName: Broncos
+        slug: broncos
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team3:
+        id: 3
+        name: Vikings
+        shortName: Vikings
+        slug: vikings
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team4:
+        id: 4
+        name: Titans
+        shortName: Titans
+        slug: titans
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team5:
+        id: 5
+        name: Bears
+        shortName: Bears
+        slug: bears
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team6:
+        id: 6
+        name: Texans
+        shortName: Texans
+        slug: texans
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team7:
+        id: 7
+        name: Browns
+        shortName: Browns
+        slug: browns
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team8:
+        id: 8
+        name: Eagles
+        shortName: Eagles
+        slug: eagles
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team9:
+        id: 9
+        name: Bills
+        shortName: Bills
+        slug: bills
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team10:
+        id: 10
+        name: Ravens
+        shortName: Ravens
+        slug: ravens
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team11:
+        id: 11
+        name: Chargers
+        shortName: Chargers
+        slug: chargers
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team12:
+        id: 12
+        name: Chiefs
+        shortName: Chiefs
+        slug: chiefs
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team13:
+        id: 13
+        name: Raiders
+        shortName: Raiders
+        slug: raiders
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team14:
+        id: 14
+        name: Saints
+        shortName: Saints
+        slug: saints
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team15:
+        id: 15
+        name: Buccaneers
+        shortName: Buccaneers
+        slug: buccaneers
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team16:
+        id: 16
+        name: Falcons
+        shortName: Falcons
+        slug: falcons
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team17:
+        id: 17
+        name: Bengals
+        shortName: Bengals
+        slug: bengals
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team18:
+        id: 18
+        name: Jets
+        shortName: Jets
+        slug: jets
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team19:
+        id: 19
+        name: Packers
+        shortName: Packers
+        slug: packers
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team20:
+        id: 20
+        name: Jaguars
+        shortName: Jaguars
+        slug: jaguars
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team21:
+        id: 21
+        name: Dolphins
+        shortName: Dolphins
+        slug: dolphins
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team22:
+        id: 22
+        name: Seahawks
+        shortName: Seahawks
+        slug: seahawks
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team23:
+        id: 23
+        name: Giants
+        shortName: Giants
+        slug: giants
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team24:
+        id: 24
+        name: Cowboys
+        shortName: Cowboys
+        slug: cowboys
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team25:
+        id: 25
+        name: Lions
+        shortName: Lions
+        slug: lions
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team26:
+        id: 26
+        name: Colts
+        shortName: Colts
+        slug: colts
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team27:
+        id: 27
+        name: Patriots
+        shortName: Patriots
+        slug: patriots
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team28:
+        id: 28
+        name: Cardinals
+        shortName: Cardinals
+        slug: cardinals
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team29:
+        id: 29
+        name: Steelers
+        shortName: Steelers
+        slug: steelers
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team30:
+        id: 30
+        name: Redskins
+        shortName: Redskins
+        slug: redskins
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team31:
+        id: 31
+        name: Rams
+        shortName: Rams
+        slug: rams
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
+    Team32:
+        id: 32
+        name: 49ers
+        shortName: 49ers
+        slug: 49ers
+        createdAt: <(new \DateTime())>
+        updatedAt: <(new \DateTime())>
