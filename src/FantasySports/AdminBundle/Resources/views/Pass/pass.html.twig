@@ -38,10 +38,10 @@
                         <legend>Boleto por marcador</legend>
                         <div class="control-group">
                             <div class="controls">
-                                <select id="input16" name="wizard[period]" class="required span12">
+                                <select id="input16" name="pass-match" class="required span12">
                                     {% if matches is defined %}
                                         {% for match in matches %}
-                                            <option>
+                                            <option value="{{ match.id }}">
                                                 {{ match.matchDate|date('D, d M Y @ H:i') }} - {{ match.homeTeam.name }} vs {{ match.awayTeam.name }}
                                             </option>
                                         {% endfor %}
@@ -53,13 +53,13 @@
 
                                 <div class="row-fluid">
                                     <div class="span4">
-                                        <input type="text" placeholder="Local" style="text-align:center;">
+                                        <input type="text"name="homeScore" placeholder="Local" style="text-align:center;">
                                     </div>
                                     <div class="span4" style="text-align:center;">
                                         vs
                                     </div>
                                     <div class="span4" style="text-align:right;">
-                                        <input type="text" placeholder="Visitante" style="text-align:center;">
+                                        <input type="text" name="awayScore" placeholder="Visitante" style="text-align:center;">
                                     </div>
                                 </div>
                             </div>
@@ -100,14 +100,14 @@
                                                 {{ match.matchDate|date('H:i') }}
                                             </div>
                                             <div class="span3">
-                                                <input type="radio" name="match[{{ match.id }}]" class="required uniform">
+                                                <input type="radio" name="matches[{{ match.id }}]" value="0" class="required uniform">
                                                 {{ match.homeTeam.name }}
                                             </div>
                                             <div class="span3">
-                                                <input type="radio" name="match[{{ match.id }}]" class="required uniform">
+                                                <input type="radio" name="matches[{{ match.id }}]" value="1" class="required uniform">
                                             </div>
                                             <div class="span3">
-                                                <input type="radio" name="match[{{ match.id }}]" class="required uniform">
+                                                <input type="radio" name="matches[{{ match.id }}]" value="2" class="required uniform">
                                                 {{ match.awayTeam.name }}
                                             </div>
                                         </div>
@@ -122,12 +122,11 @@
                         <div class="control-group">
                             <div class="controls">
                                 <select id="picklist-ex" name="picklist[]">
-                                    <option>Botella</option>
-                                    <option>Bomba Villana</option>
-                                    <option>Revolver</option>
-                                    <option>Perla Negra</option>
-                                    <option>Satanás</option>
-                                    <option>Venganza Villana</option>
+                                    {% if products is defined %}
+                                        {% for product in products %}
+                                            <option value="{{ product.id }}">{{ product.category.name }} - {{ product.name }}</option>
+                                        {% endfor %}
+                                    {% endif %}
                                 </select>
                                 <p class="help-block">Usa shift o control para seleccionar varios elementos</p>
                             </div>
@@ -145,6 +144,9 @@
                             <button class="btn" type="reset">Cancelar</button>
                         </div>
                     </fieldset>
+
+                    <input type="hidden" name="phase" value="{{ phase }}" />
+                    <input type="hidden" name="jornada" value="{{ jornada }}" />
                 </form>
             </div>
         </div>

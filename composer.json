@@ -29,7 +29,9 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "endroid/qrcode-bundle": "^1.6",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "stof/doctrine-extensions-bundle": "^1.2"
+        "stof/doctrine-extensions-bundle": "^1.2",
+        "pkpass/pkpass": "dev-master",
+        "aws/aws-sdk-php": "^3.18"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

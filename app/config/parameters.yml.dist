@@ -22,3 +22,8 @@ parameters:
         database: session_db
         collection: session
     mongodb_host: 127.0.0.1
+    pass_pass: abc
+    aws_key: abc
+    aws_secret: abc
+    apple_team: abc
+    apple_pass_identifier: abc
