@@ -29,19 +29,19 @@
                         <div class="control-group">
                             <div class="controls">
                                 <label class="radio"><input type="radio" value="1" name="pass-type" class="required uniform"> Quiniela</label>
-                                <label class="radio"><input type="radio" value="2" name="pass-type" class="required uniform"> Marcador</label>
+                                <label class="radio"><input type="radio" value="2" name="pass-type" class="required uniform"{% if match_id is defined %}checked="checked"{% endif %}> Marcador</label>
                             </div>
                         </div>
                     </fieldset>
 
-                    <fieldset style="display:none;" id="boleto-marcador" class="boleto">
+                    <fieldset style="{% if match_id is not defined %}display:none;{% endif %}" id="boleto-marcador" class="boleto">
                         <legend>Boleto por marcador</legend>
                         <div class="control-group">
                             <div class="controls">
                                 <select id="input16" name="pass-match" class="required span12">
                                     {% if matches is defined %}
                                         {% for match in matches %}
-                                            <option value="{{ match.id }}">
+                                            <option value="{{ match.id }}"{% if match_id is defined and match.id == match_id %}selected="selected"{% endif %}>
                                                 {{ match.matchDate|date('D, d M Y @ H:i') }} - {{ match.homeTeam.name }} vs {{ match.awayTeam.name }}
                                             </option>
                                         {% endfor %}

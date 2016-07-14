@@ -81,26 +81,18 @@
     </div>
 
     <script type="text/javascript">
-        var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
-
         var eventData = [
-            {
-                title: 'Bayern - Barça',
-                start: new Date(Date.UTC(y, m, d, 18, 45)),
-                end: new Date(Date.UTC(y, m, d, 18, 0)),
-                allDay: false,
-                url: '{{ path('fantasy_sports_admin_pass_add', {'match_id':1}) }}'
-            },
-            {
-                title: 'Benfica - Atlético',
-                start: new Date(Date.UTC(y, m, d, 18, 45)),
-                end: new Date(Date.UTC(y, m, d, 18, 0)),
-                allDay: false,
-                url: '{{ path('fantasy_sports_admin_pass_add', {'match_id':2}) }}'
-            }
+            {% if matches is defined %}
+                {% for match in matches %}
+                    {
+                        title: '{{ match.homeTeam.shortName }} - {{ match.awayTeam.shortName }}',
+                        start: new Date(Date.UTC({{ match.matchDate|date('Y', 'UTC') }}, {{ match.matchDate|date('m', 'UTC')-1 }}, {{ match.matchDate|date('d', 'UTC') }}, {{ match.matchDate|date('H', 'UTC') }}, {{ match.matchDate|date('i', 'UTC') }})),
+                        //end: new Date(Date.UTC(y, m, d, 18, 0)),
+                        allDay: false,
+                        url: '{{ path('fantasy_sports_admin_pass_add', {'match_id':match.id}) }}'
+                    },
+                {% endfor %}
+            {% endif %}
         ];
     </script>
 {% endblock %}
