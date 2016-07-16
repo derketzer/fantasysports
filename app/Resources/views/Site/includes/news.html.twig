@@ -1,0 +1,42 @@
+{% if news is defined %}
+    <div class="blog">
+        <div class="navbar nav-menu">
+            <div class="navbar-label">
+                <h3 class="title">
+                    <span>Últimas noticias</span>
+                </h3>
+            </div>
+        </div>
+        <div class="content-blog">
+            <ul class="owl-carousel" data-dots="false" data-loop="true" data-nav = "false" data-margin = "30" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"768":{"items":2},"1000":{"items":3}}'>
+                {% for newsItem in news %}
+                    <li class="item equalheight">
+                        <div class="postcontent">
+                            <div class="blog-image image-container">
+                                <a href="blog-detail.html">
+                                    <img class="img-responsive" src="{{ newsItem.image }}" alt="">
+                                </a>
+                            </div>
+                            <div class="blog-info clearfix">
+                                <h3 class="name">
+                                    <a href="blog-detail.html">{{ newsItem.title }}</a>
+                                </h3>
+                                <span class="comment fa fa-comments">(3)</span>
+
+                            </div>
+                            <div class="detail">
+                                <span class="post-date">{{ newsItem.newsDate|localizeddate('long', 'none', 'es', 'America/Mexico_City', "EEEE, d 'de' LLLL Y") }}</span>
+                            </div>
+                            <div class="blog_short_text clearfix">
+                                <div class="shortcontent-text">
+                                    <p class="short-text">{{ newsItem.description }}s</p>
+                                </div>
+                                <!-- <a class="button btn-cart" href="">Read more</a> -->
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

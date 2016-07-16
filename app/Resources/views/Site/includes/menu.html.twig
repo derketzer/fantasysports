@@ -1,0 +1,19 @@
+<div id="nav-top-menu">
+    <div class="" id="box-vertical-megamenus">
+        <div class="box-vertical-megamenus">
+            <div class="left-menu-content">
+                <ul class="vertical-menu-list">
+                    {% if categories is defined %}
+                        {% for category in categories %}
+                            <li class="home">
+                                <a class="parent" href="#">
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

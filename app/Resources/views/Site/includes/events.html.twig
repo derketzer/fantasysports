@@ -1,0 +1,24 @@
+{% if events is defined %}
+    <div class="category-browse">
+        <div class="navbar nav-menu">
+            <div class="navbar-label">
+                <h3 class="title">
+                    <span>Próximos eventos</span>
+                </h3>
+            </div>
+        </div>
+        <div class="cat-content row">
+            {% for event in events %}
+                <div class="cat-item col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="#">
+                        <img class="img-responsive" src="{{ event.image }}" alt="">
+                    </a>
+                    <div class="cat-sub">
+                        <h3 class="title">{{ event.name }}</h3>
+                        <span class="info">{{ event.eventDate|localizeddate('long', 'none', 'es', 'America/Mexico_City', "EEEE, d 'de' LLLL Y") }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
