@@ -19,7 +19,7 @@
 {% block body %}
     <ul class="stats-container">
         <li>
-            <a href="#" class="stat summary">
+            <a href="{{ path('fantasy_sports_admin_pass_list') }}" class="stat summary">
                 <span class="icon icon-circle bg-grey">
                     <i class="icon-stats"></i>
                 </span>
@@ -30,18 +30,7 @@
             </a>
         </li>
         <li>
-            <a href="#" class="stat summary">
-                <span class="icon icon-circle bg-green">
-                    <i class="icon-stats"></i>
-                </span>
-                <span class="digit">
-                    <span class="text">Pases ganados</span>
-                    {{ pasesGanados|number_format(0, '.', ',') }}
-                </span>
-            </a>
-        </li>
-        <li>
-            <a href="#" class="stat summary">
+            <a href="{{ path('fantasy_sports_admin_pass_active') }}" class="stat summary">
                 <span class="icon icon-circle bg-orange">
                     <i class="icon-user"></i>
                 </span>
@@ -52,7 +41,18 @@
             </a>
         </li>
         <li>
-            <a href="#" class="stat summary">
+            <a href="{{ path('fantasy_sports_admin_pass_won') }}" class="stat summary">
+                <span class="icon icon-circle bg-green">
+                    <i class="icon-stats"></i>
+                </span>
+                <span class="digit">
+                    <span class="text">Pases ganados</span>
+                    {{ pasesGanados|number_format(0, '.', ',') }}
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('fantasy_sports_admin_pass_lost') }}" class="stat summary">
                 <span class="icon icon-circle bg-red">
                     <i class="icon-stats"></i>
                 </span>

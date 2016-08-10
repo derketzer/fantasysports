@@ -14,11 +14,30 @@ class IndexController extends Controller
         $sportMatchRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:SportMatch');
         $matches = $sportMatchRespository->findBy(Array('phase'=>$phase->getId(), 'jornada'=>1), Array('matchDate'=>'ASC'));
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $passRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Pase');
+
+        $query = $passRespository->createQueryBuilder('p')
+            ->select('count(p.id) AS conteo, p.status')
+            ->where("p.user = :user")
+            ->groupBy('p.status')
+            ->setParameter('user', $user)
+            ->getQuery();
+        $passes = $query->getResult();
+
+        $passesCount = [0, 0, 0];
+        $passesTotal = 0;
+        foreach ($passes as $pass){
+            $passesCount[$pass['status']] = $pass['conteo'];
+            $passesTotal += $pass['conteo'];
+        }
+
         return $this->render('FantasySportsAdminBundle:Index:dashboard.html.twig', Array(
-            'pasesAdquiridos' => 0,
-            'pasesGanados' => 0,
-            'pasesPendientes' => 0,
-            'pasesPerdidos' => 0,
+            'pasesAdquiridos' => $passesTotal,
+            'pasesGanados' => $passesCount[1],
+            'pasesPendientes' => $passesCount[0],
+            'pasesPerdidos' => $passesCount[2],
             'matches' => $matches
         ));
     }

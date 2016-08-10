@@ -1,0 +1,68 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Pass' %}
+{% set pageDescription = 'Pass' %}
+{% set userPoints = app.user.wallet.balance %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Pass</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title">Pass</span>
+            </div>
+            <div class="widget-content table-container">
+                <table id="pass-tables" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Equipo Local</th>
+                            <th>Equipo visitante</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% if pass is defined %}
+                        {% for passDetail in pass.paseDetails %}
+                            <tr>
+                                <td>{{ passDetail.sportMatch.matchDate|date('l, d M Y @ H:i') }}</td>
+                                <td>
+                                    {% if passDetail.selection == 0 %}<b>{% endif %}
+                                    {{ passDetail.sportMatch.homeTeam.shortName }}
+                                    {% if passDetail.selection == 0 %}</b>{% endif %}
+                                </td>
+                                <td>
+                                    {% if passDetail.selection == 2 %}<b>{% endif %}
+                                    {{ passDetail.sportMatch.awayTeam.shortName }}
+                                    {% if passDetail.selection == 2 %}</b>{% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if($.fn.dataTable) {
+                $('table#pass-tables').dataTable();
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Passes' %}
+{% set pageDescription = 'Todos los passes' %}
+{% set userPoints = app.user.wallet.balance %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Pass</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title">Passes</span>
+            </div>
+            <div class="widget-content table-container">
+                <table id="pass-tables" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Equipo Local</th>
+                            <th>Equipo visitante</th>
+                            <th>Tipo</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% if passes is defined %}
+                            {% for pass in passes %}
+                                <tr>
+                                    <td>{{ pass.id }}</td>
+                                    {% if pass.type == 1 %}
+                                        <td>
+                                            {% if pass.paseDetails[0].homeScore > pass.paseDetails[0].awayScore %}<b>{% endif %}
+                                            {{ pass.paseDetails[0].sportMatch.homeTeam.shortName }} ({{ pass.paseDetails[0].homeScore }})
+                                            {% if pass.paseDetails[0].homeScore > pass.paseDetails[0].awayScore %}</b>{% endif %}
+                                        </td>
+                                        <td>
+                                            {% if pass.paseDetails[0].homeScore < pass.paseDetails[0].awayScore %}<b>{% endif %}
+                                            {{ pass.paseDetails[0].sportMatch.awayTeam.shortName }} ({{ pass.paseDetails[0].awayScore }})
+                                            {% if pass.paseDetails[0].homeScore > pass.paseDetails[0].awayScore %}</b>{% endif %}
+                                        </td>
+                                        <td>Marcador</td>
+                                        <td>
+                                            {% if pass.status == 0 %}
+                                                Pendiente
+                                            {% elseif pass.status == 1 %}
+                                                Ganado
+                                            {% elseif pass.status == 2 %}
+                                                Perdido
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        </td>
+                                    {% else %}
+                                        <td colspan="2">
+                                            <a href="{{ path('fantasy_sports_admin_pass_detail', {'passId':pass.id}) }}">
+                                                Ver más detalles
+                                            </a>
+                                        </td>
+                                        <td>Quiniela</td>
+                                        <td>Pendiente</td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if($.fn.dataTable) {
+                $('table#pass-tables').dataTable();
+            }
+        });
+    </script>
+{% endblock %}

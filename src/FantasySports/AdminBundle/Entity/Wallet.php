@@ -2,6 +2,7 @@
 
 namespace FantasySports\AdminBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -44,6 +45,15 @@ class Wallet
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="WalletTransaction", mappedBy="wallet")
+     */
+    private $transactions;
+
+    public function __construct() {
+        $this->transactions = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -125,6 +135,22 @@ class Wallet
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
+    }
+
+    /**
+     * @param mixed $transactions
+     */
+    public function setTransactions($transactions)
+    {
+        $this->transactions = $transactions;
     }
 }
 

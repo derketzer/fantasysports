@@ -103,7 +103,7 @@ class PassController extends Controller
             'description'         => 'Quiniela del Villano Chelero',
             'organizationName'    => 'El Villano Chelero',
             'passTypeIdentifier'  => $this->container->getParameter('apple_pass_identifier'),
-            'serialNumber'        => 'E5982H-I2',
+            'serialNumber'        => $this->generateRandomString(),
             'teamIdentifier'      => $this->container->getParameter('apple_team'),
             "webServiceURL"       => "https://fantasysports.mx/",
             "authenticationToken" => "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
@@ -319,8 +319,38 @@ class PassController extends Controller
         return $randomString;
     }
 
-    function make_seed(){
+    private function make_seed(){
         list($usec, $sec) = explode(' ', microtime());
         return (float) $sec + ((float) $usec * 100000);
+    }
+
+    public function listAction($status)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $passRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Pase');
+
+        if($status == -1)
+            $passes = $passRespository->findBy(['user'=>$user], ['createdAt'=>'DESC']);
+        else
+            $passes = $passRespository->findBy(['user'=>$user, 'status'=>$status], ['createdAt'=>'DESC']);
+
+        return $this->render('FantasySportsAdminBundle:Pass:list.html.twig', ['passes'=>$passes]);
+    }
+
+    public function detailAction($passId)
+    {
+        if($passId == 0)
+            return $this->redirectToRoute('fantasy_sports_admin_dashboard');
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $passRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Pase');
+        $pass = $passRespository->findOneBy(['id'=>$passId]);
+
+        if($pass->getUser()->getId() != $user->getId())
+            return $this->redirectToRoute('fantasy_sports_admin_dashboard');
+
+        return $this->render('FantasySportsAdminBundle:Pass:detail.html.twig', ['pass'=>$pass]);
     }
 }

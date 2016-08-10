@@ -12,4 +12,32 @@ fantasy_sports_admin_pass_add:
 
 fantasy_sports_admin_pass_list:
     path:     /passes
-    defaults: { _controller: FantasySportsAdminBundle:Pass:list }
+    defaults: { _controller: FantasySportsAdminBundle:Pass:list, status: -1 }
+
+fantasy_sports_admin_pass_detail:
+    path:     /pass/{passId}/detail
+    defaults: { _controller: FantasySportsAdminBundle:Pass:detail, passId: 0 }
+
+fantasy_sports_admin_pass_active:
+    path:     /passes/active
+    defaults: { _controller: FantasySportsAdminBundle:Pass:list, status: 0 }
+
+fantasy_sports_admin_pass_won:
+    path:     /passes/won
+    defaults: { _controller: FantasySportsAdminBundle:Pass:list, status: 1 }
+
+fantasy_sports_admin_pass_lost:
+    path:     /passes/lost
+    defaults: { _controller: FantasySportsAdminBundle:Pass:list, status: 2 }
+
+fantasy_sports_admin_transaction_list:
+    path:     /transactions
+    defaults: { _controller: FantasySportsAdminBundle:Transaction:list, user: -1 }
+
+fantasy_sports_admin_transaction_invite:
+    path:     /invite
+    defaults: { _controller: FantasySportsAdminBundle:Invitation:invite }
+
+fantasy_sports_admin_transaction_invite_send:
+    path:     /invite/send
+    defaults: { _controller: FantasySportsAdminBundle:Invitation:send }

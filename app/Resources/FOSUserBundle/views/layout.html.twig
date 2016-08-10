@@ -38,7 +38,7 @@
 <body>
 <div id="login-wrap">
     <div id="login-ribbon"><i class="icon-lock"></i></div>
-    {% if error %}
+    {% if error is defined %}
         <div style="color:white;margin-top:2px;margin-bottom:7px;font-weigh:bold;">
             Error: {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
@@ -94,6 +94,12 @@
                         <label class="control-label">Usuario</label>
                         <div class="controls">
                             <input type="text" name="fos_user_registration_form[username]" class="required">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Código de invitación</label>
+                        <div class="controls">
+                            <input type="text" name="fos_user_registration_form[invitation]" class="required">
                         </div>
                     </div>
                     <div class="control-group">

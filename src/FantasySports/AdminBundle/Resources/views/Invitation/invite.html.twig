@@ -1,0 +1,39 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Invitar' %}
+{% set pageDescription = 'Invitar a un amigo' %}
+{% set userPoints = app.user.wallet.balance %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        <a href="{{ path('fantasy_sports_admin_dashboard') }}">Invitar</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title"><i class="icon-resize-horizontal"></i> Invitar</span>
+            </div>
+            <div class="widget-content form-container">
+                <form class="form-horizontal" action="{{ path('fantasy_sports_admin_transaction_invite_send') }}">
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Correo electrónico</label>
+                        <div class="controls">
+                            <input type="text" class="span12" id="input01">
+                            <p class="help-block">Ingresa el correo electrónico de quien quieras invitar</p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
