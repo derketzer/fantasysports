@@ -1,0 +1,66 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Usuarios' %}
+{% set pageDescription = 'Todos los usuarios registrados' %}
+{% set userPoints = app.user.wallet.balance %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Usuarios</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title">Usuarios registrados</span>
+            </div>
+            <div class="widget-content table-container">
+                <table id="pass-tables" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Última conexión</th>
+                        <th>Fecha de registro</th>
+                        <th>Invitado por</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% if users is defined %}
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.lastLogin|date('d-m-Y @ H:i') }}</td>
+                                <td>{{ user.registeredAt|date('d-m-Y @ H:i') }}</td>
+                                <td>{{ user.invitation.from.username }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if($.fn.dataTable) {
+                $('table#pass-tables').dataTable();
+            }
+        });
+    </script>
+{% endblock %}

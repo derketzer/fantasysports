@@ -1,0 +1,70 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Invitaciones' %}
+{% set pageDescription = 'Todos los invitaciones enviadas' %}
+{% set userPoints = app.user.wallet.balance %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Invitaciones</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title">Invitaciones enviadas</span>
+            </div>
+            <div class="widget-content table-container">
+                <table id="pass-tables" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Código</th>
+                        <th>Status</th>
+                        <th>Fecha de envío</th>
+                        <th>Fecha de aceptación</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% if invitations is defined %}
+                        {% for invitation in invitations %}
+                            <tr>
+                                <td>{{ invitation.email }}</td>
+                                <td>{{ invitation.code }}</td>
+                                <td>
+                                    {% if invitation.accepted == 1 %}
+                                        Aceptada
+                                    {% else %}
+                                        Por aceptar
+                                    {% endif %}
+                                </td>
+                                <td>{{ invitation.createdAt|date('d-m-Y @ H:i') }}</td>
+                                <td>{{ invitation.acceptedAt|date('d-m-Y @ H:i') }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if($.fn.dataTable) {
+                $('table#pass-tables').dataTable();
+            }
+        });
+    </script>
+{% endblock %}

@@ -38,6 +38,14 @@ fantasy_sports_admin_transaction_invite:
     path:     /invite
     defaults: { _controller: FantasySportsAdminBundle:Invitation:invite }
 
+fantasy_sports_admin_transaction_invite_list:
+    path:     /invites
+    defaults: { _controller: FantasySportsAdminBundle:Invitation:list }
+
 fantasy_sports_admin_transaction_invite_send:
     path:     /invite/send
     defaults: { _controller: FantasySportsAdminBundle:Invitation:send }
+
+fantasy_sports_admin_user_list:
+    path:     /users
+    defaults: { _controller: FantasySportsAdminBundle:User:list }

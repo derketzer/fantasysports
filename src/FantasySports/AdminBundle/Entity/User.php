@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -21,8 +22,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Wallet")
-     * @ORM\JoinColumn(name="wallet_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\OneToOne(targetEntity="Wallet", mappedBy="user")
      */
     private $wallet;
 
@@ -32,16 +32,30 @@ class User extends BaseUser
     private $passes;
 
     /**
+     * @ORM\OneToMany(targetEntity="Invitation", mappedBy="from")
+     */
+    protected $invitations;
+
+    /**
      * @ORM\OneToOne(targetEntity="Invitation")
      * @ORM\JoinColumn(referencedColumnName="code")
      * @Assert\NotNull(message="Your invitation is wrong", groups={"Registration"})
      */
     protected $invitation;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="registered_at", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $registeredAt;
+
     public function __construct()
     {
         parent::__construct();
         $this->passes = new ArrayCollection();
+        $this->invitations = new ArrayCollection();
     }
 
     /**
@@ -79,6 +93,22 @@ class User extends BaseUser
     /**
      * @return mixed
      */
+    public function getInvitations()
+    {
+        return $this->invitations;
+    }
+
+    /**
+     * @param mixed $invitations
+     */
+    public function setInvitations($invitations)
+    {
+        $this->invitations = $invitations;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getInvitation()
     {
         return $this->invitation;
@@ -90,5 +120,21 @@ class User extends BaseUser
     public function setInvitation($invitation)
     {
         $this->invitation = $invitation;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getRegisteredAt()
+    {
+        return $this->registeredAt;
+    }
+
+    /**
+     * @param \DateTime $registeredAt
+     */
+    public function setRegisteredAt($registeredAt)
+    {
+        $this->registeredAt = $registeredAt;
     }
 }

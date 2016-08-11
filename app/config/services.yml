@@ -32,3 +32,9 @@ services:
         class: FantasySports\AdminBundle\Form\DataTransformer\InvitationToCodeTransformer
         arguments: ['@doctrine.orm.entity_manager']
         public: false
+
+    account.register_listener:
+        class: FantasySports\AdminBundle\Listener\FosUserListener
+        arguments: ['@doctrine.orm.entity_manager', '@service_container']
+        tags:
+            - { name: 'kernel.event_subscriber' }

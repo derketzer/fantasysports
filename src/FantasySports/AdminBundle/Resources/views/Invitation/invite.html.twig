@@ -21,11 +21,21 @@
                 <span class="title"><i class="icon-resize-horizontal"></i> Invitar</span>
             </div>
             <div class="widget-content form-container">
-                <form class="form-horizontal" action="{{ path('fantasy_sports_admin_transaction_invite_send') }}">
+                <form class="form-horizontal" action="{{ path('fantasy_sports_admin_transaction_invite_send') }}" method="post">
+                    {% if error is not null %}
+                    <div class="alert alert-error">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+                    {% if success is not null %}
+                        <div class="alert alert-success">
+                            {{ success }}
+                        </div>
+                    {% endif %}
                     <div class="control-group">
                         <label class="control-label" for="input01">Correo electrónico</label>
                         <div class="controls">
-                            <input type="text" class="span12" id="input01">
+                            <input type="text" class="span12" id="input01" name="email">
                             <p class="help-block">Ingresa el correo electrónico de quien quieras invitar</p>
                         </div>
                     </div>

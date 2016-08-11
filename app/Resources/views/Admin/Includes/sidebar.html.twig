@@ -3,6 +3,9 @@
     'fantasy_sports_admin_pass_active',
     'fantasy_sports_admin_pass_won',
     'fantasy_sports_admin_pass_lost'] %}
+{% set inviteRoutes = ['fantasy_sports_admin_transaction_invite',
+    'fantasy_sports_admin_transaction_invite_list'] %}
+{% set userRoutes = ['fantasy_sports_admin_user_list'] %}
 <aside id="sidebar">
     <nav id="navigation" class="collapse">
         <ul>
@@ -71,9 +74,9 @@
                 </ul>
             </li>
 
-            <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_transaction_invite' %}active open{% endif %}">
+            <li class="{% if app.request.attributes.get('_route') in inviteRoutes %}active open{% endif %}">
                 <span title="General">
-                    <i class="icon-add-contact"></i>
+                    <i class="icon-file"></i>
                     <span class="nav-title">Invitar</span>
                 </span>
 
@@ -83,8 +86,30 @@
                             <i class="icon-add-contact"></i> Invitar
                         </a>
                     </li>
+                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_transaction_invite_list' %}active{% endif %}">
+                        <a href="{{ path('fantasy_sports_admin_transaction_invite_list') }}">
+                            <i class="icol-email"></i> Enviadas
+                        </a>
+                    </li>
                 </ul>
             </li>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="{% if app.request.attributes.get('_route') in userRoutes %}active open{% endif %}">
+                    <span title="General">
+                        <i class="icon-user"></i>
+                        <span class="nav-title">Usuarios</span>
+                    </span>
+
+                    <ul class="inner-nav">
+                        <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_user_list' %}active{% endif %}">
+                            <a href="{{ path('fantasy_sports_admin_user_list') }}">
+                                <i class="icol-book-open"></i> Todos
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
         </ul>
     </nav>
 </aside>

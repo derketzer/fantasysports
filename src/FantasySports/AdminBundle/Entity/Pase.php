@@ -46,7 +46,7 @@ class Pase
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="pases")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="passes")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      **/
     private $user;

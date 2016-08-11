@@ -51,6 +51,12 @@ class Wallet
      */
     private $transactions;
 
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="wallet")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
     public function __construct() {
         $this->transactions = new ArrayCollection();
     }
@@ -151,6 +157,22 @@ class Wallet
     public function setTransactions($transactions)
     {
         $this->transactions = $transactions;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 }
 
