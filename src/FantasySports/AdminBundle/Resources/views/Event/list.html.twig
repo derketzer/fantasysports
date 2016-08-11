@@ -1,7 +1,7 @@
 {% extends '::Admin/base.html.twig' %}
 
-{% set pageTitle = 'Invitaciones' %}
-{% set pageDescription = 'Todos los invitaciones enviadas' %}
+{% set pageTitle = 'Eventos' %}
+{% set pageDescription = 'Todos las eventos' %}
 
 {% block breadcrumbs %}
     <li>
@@ -9,7 +9,7 @@
         <span class="divider">&raquo;</span>
     </li>
     <li>
-        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Invitaciones</a>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Eventos</a>
     </li>
 {% endblock %}
 
@@ -18,35 +18,37 @@
 
         <div class="span12 widget">
             <div class="widget-header">
-                <span class="title">Invitaciones enviadas</span>
+                <span class="title">Eventos</span>
             </div>
             <div class="widget-content table-container">
                 <table id="pass-tables" class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Email</th>
-                        <th>Código</th>
-                        <th>Status</th>
-                        <th>Fecha de envío</th>
-                        <th>Fecha de aceptación</th>
+                        <th>ID</th>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Fecha del evento</th>
+                        <th>Activo</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    {% if invitations is defined %}
-                        {% for invitation in invitations %}
+                    {% if events is defined %}
+                        {% for event in events %}
                             <tr>
-                                <td>{{ invitation.email }}</td>
-                                <td>{{ invitation.code }}</td>
+                                <td>{{ event.id }}</td>
+                                <td style="text-align: center;"><img src="{{ event.image }}" style="max-height:150px;" /></td>
+                                <td>{{ event.name }}</td>
+                                <td>{{ event.description }}</td>
+                                <td>{{ event.eventDate|date('d-m-Y @ H:i') }}</td>
                                 <td>
-                                    {% if invitation.accepted == 1 %}
-                                        <span class="label label-success">Aceptada</span>
+                                    {% if event.active == 1 %}
+                                        <span class="label label-success">Publicado</span>
                                     {% else %}
-                                        <span class="label label-important">Por aceptar</span>
+                                        <span class="label label-improtant">No publicado</span>
                                     {% endif %}
                                 </td>
-                                <td>{{ invitation.createdAt|date('d-m-Y @ H:i') }}</td>
-                                <td>{{ invitation.acceptedAt|date('d-m-Y @ H:i') }}</td>
                             </tr>
                         {% endfor %}
                     {% endif %}

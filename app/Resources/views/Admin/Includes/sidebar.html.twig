@@ -6,6 +6,8 @@
 {% set inviteRoutes = ['fantasy_sports_admin_transaction_invite',
     'fantasy_sports_admin_transaction_invite_list'] %}
 {% set userRoutes = ['fantasy_sports_admin_user_list'] %}
+{% set newsRoutes = ['fantasy_sports_admin_news_list'] %}
+{% set eventRoutes = ['fantasy_sports_admin_event_list'] %}
 <aside id="sidebar">
     <nav id="navigation" class="collapse">
         <ul>
@@ -93,6 +95,40 @@
                     </li>
                 </ul>
             </li>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="{% if app.request.attributes.get('_route') in eventRoutes %}active open{% endif %}">
+                    <span title="General">
+                        <i class="icon-television"></i>
+                        <span class="nav-title">Eventos</span>
+                    </span>
+
+                    <ul class="inner-nav">
+                        <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_event_list' %}active{% endif %}">
+                            <a href="{{ path('fantasy_sports_admin_event_list') }}">
+                                <i class="icol-book-open"></i> Todos
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="{% if app.request.attributes.get('_route') in newsRoutes %}active open{% endif %}">
+                    <span title="General">
+                        <i class="icon-newspaper"></i>
+                        <span class="nav-title">Noticias</span>
+                    </span>
+
+                    <ul class="inner-nav">
+                        <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_news_list' %}active{% endif %}">
+                            <a href="{{ path('fantasy_sports_admin_news_list') }}">
+                                <i class="icol-book-open"></i> Todos
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
 
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="{% if app.request.attributes.get('_route') in userRoutes %}active open{% endif %}">

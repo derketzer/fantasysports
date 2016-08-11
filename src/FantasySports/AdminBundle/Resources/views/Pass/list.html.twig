@@ -51,11 +51,11 @@
                                         <td>Marcador</td>
                                         <td>
                                             {% if pass.status == 0 %}
-                                                Pendiente
+                                                <span class="label">Pendiente</span>
                                             {% elseif pass.status == 1 %}
-                                                Ganado
+                                                <span class="label label-success">Ganado</span>
                                             {% elseif pass.status == 2 %}
-                                                Perdido
+                                                <span class="label label-important">Perdido</span>
                                             {% else %}
                                                 -
                                             {% endif %}
@@ -67,7 +67,17 @@
                                             </a>
                                         </td>
                                         <td>Quiniela</td>
-                                        <td>Pendiente</td>
+                                        <td>
+                                            {% if pass.status == 0 %}
+                                                <span class="label">Pendiente</span>
+                                            {% elseif pass.status == 1 %}
+                                                <span class="label label-success">Ganado</span>
+                                            {% elseif pass.status == 2 %}
+                                                <span class="label label-important">Perdido</span>
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        </td>
                                     {% endif %}
                                 </tr>
                             {% endfor %}

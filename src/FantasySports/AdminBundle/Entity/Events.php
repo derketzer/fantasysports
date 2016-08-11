@@ -58,6 +58,12 @@ class Events
      */
     private $image;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
 
     /**
      * Get id
@@ -179,6 +185,22 @@ class Events
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
     }
 }
 
