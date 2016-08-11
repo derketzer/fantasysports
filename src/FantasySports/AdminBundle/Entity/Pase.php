@@ -52,7 +52,7 @@ class Pase
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="PaseDetail", mappedBy="pase")
+     * @ORM\OneToMany(targetEntity="PaseDetail", mappedBy="pase", cascade={"persist"})
      */
     private $paseDetails;
 
@@ -157,6 +157,10 @@ class Pase
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    public function addPaseDetail($paseDetail){
+        $this->paseDetails[] = $paseDetail;
     }
 }
 

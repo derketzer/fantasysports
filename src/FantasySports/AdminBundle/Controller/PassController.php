@@ -3,6 +3,8 @@
 namespace FantasySports\AdminBundle\Controller;
 
 use Aws\S3\S3Client;
+use FantasySports\AdminBundle\Entity\Pase;
+use FantasySports\AdminBundle\Entity\PaseDetail;
 use PKPass\PKPass;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,6 +54,16 @@ class PassController extends Controller
     {
         $pass = new PKPass();
 
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $pase = new Pase();
+        $pase->setType(2);
+        $pase->setStatus(0);
+        $pase->setCreatedAt(new \DateTime());
+        $pase->setUser($user);
+
         srand($this->make_seed());
 
         $sportMatchRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:SportMatch');
@@ -65,6 +77,13 @@ class PassController extends Controller
         $matchesBackField = '';
         foreach($data['matches'] as $matchId=>$pronostico){
             $match = $sportMatchRespository->findOneBy(Array('id'=>$matchId));
+
+            $paseDetail = new PaseDetail();
+            $paseDetail->setSportMatch($match);
+            $paseDetail->setCreatedAt(new \DateTime());
+            $paseDetail->setSelection($pronostico);
+            $paseDetail->setPase($pase);
+            $pase->addPaseDetail($paseDetail);
 
             $home = '';
             $none = ' - ';
@@ -96,7 +115,7 @@ class PassController extends Controller
         $couponLabel = date('d \d\e F, Y \@ H:i', $lastMatchDate);
         $couponValue = 'Quiniela';
         $expirationDate = date('Y-m-d', $lastMatchDate+3600*24)."T".date('H:i', $lastMatchDate+3600*24)."-06:00";
-        $validFor = "1 botella gratis";
+        $createdAt = date('d.m.y');
 
         $passData = [
             'formatVersion'       => 1,
@@ -134,8 +153,8 @@ class PassController extends Controller
                     ],
                     [
                         "key" => "valid-for",
-                        "label" => "Válido por",
-                        "value" => $validFor
+                        "label" => "Creado el",
+                        "value" => $createdAt
                     ]
                 ],
                 "backFields" => [
@@ -143,6 +162,11 @@ class PassController extends Controller
                         "key" => "matches",
                         "label" => "Quiniela",
                         "value" => $matchesBackField
+                    ],
+                    [
+                        "key" => "valid-for",
+                        "label" => "Válido por",
+                        "value" => "1 botella"
                     ],
                     [
                         "key" => "terms",
@@ -179,8 +203,6 @@ class PassController extends Controller
             ]
         ]);
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
         $path = 'passes/villano-chelero/'.$user->getId().'/'.time().'.pkpass';
 
         $s3Client->putObject([
@@ -191,12 +213,25 @@ class PassController extends Controller
             'ContentType' => 'application/vnd.apple.pkpass'
         ]);
 
+        $em->persist($pase);
+        $em->flush();
+
         return $path;
     }
 
     private function generateMatchPass($data)
     {
         $pass = new PKPass();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $pase = new Pase();
+        $pase->setType(1);
+        $pase->setStatus(0);
+        $pase->setCreatedAt(new \DateTime());
+        $pase->setUser($user);
 
         srand($this->make_seed());
 
@@ -211,12 +246,20 @@ class PassController extends Controller
         $sportMatchRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:SportMatch');
         $match = $sportMatchRespository->findOneBy(Array('id'=>$pass_match));
 
+        $paseDetail = new PaseDetail();
+        $paseDetail->setSportMatch($match);
+        $paseDetail->setCreatedAt(new \DateTime());
+        $paseDetail->setAwayScore($awayScore);
+        $paseDetail->setHomeScore($homeScore);
+        $paseDetail->setPase($pase);
+        $pase->addPaseDetail($paseDetail);
+
         $barcode = $this->generateRandomString();
         $relevantDate = date('Y-m-d', $match->getMatchDate()->getTimestamp())."T".date('H:i', $match->getMatchDate()->getTimestamp())."-06:00";
         $couponLabel = date('d \d\e F, Y \@ H:i', $match->getMatchDate()->getTimestamp());
         $couponValue = $match->getHomeTeam()->getShortName()." ".$homeScore." - ".$awayScore." ".$match->getAwayTeam()->getShortName();
         $expirationDate = date('Y-m-d', $match->getMatchDate()->getTimestamp()+3600*24)."T".date('H:i', $match->getMatchDate()->getTimestamp()+3600*24)."-06:00";
-        $validFor = "1 botella gratis";
+        $createdAt = date('d.m.y');
 
         $passData = [
             'formatVersion'       => 1,
@@ -254,8 +297,8 @@ class PassController extends Controller
                     ],
                     [
                         "key" => "valid-for",
-                        "label" => "Válido por",
-                        "value" => $validFor
+                        "label" => "Creado el",
+                        "value" => $createdAt
                     ]
                 ],
                 "backFields" => [
@@ -263,6 +306,11 @@ class PassController extends Controller
                         "key" => "terms",
                         "label" => "Términos y condiciones",
                         "value" => "Válido hasta 24 horas después del día del partido."
+                    ],
+                    [
+                        "key" => "valid-for",
+                        "label" => "Válido por",
+                        "value" => "1 botella"
                     ]
                 ]
             ]
@@ -294,8 +342,6 @@ class PassController extends Controller
             ]
         ]);
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
         $path = 'passes/villano-chelero/'.$user->getId().'/'.time().'.pkpass';
 
         $s3Client->putObject([
@@ -305,6 +351,9 @@ class PassController extends Controller
             'Body'   => $result,
             'ContentType' => 'application/vnd.apple.pkpass'
         ]);
+
+        $em->persist($pase);
+        $em->flush();
 
         return $path;
     }

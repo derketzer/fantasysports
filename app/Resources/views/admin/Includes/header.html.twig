@@ -17,11 +17,7 @@
                             <span class="item-icon"><i class="icon-shopping-cart"></i></span>
                             <span class="item-label">Puntos</span>
                             <span class="item-count">
-                                {% if userPoints is defined %}
-                                    {{ userPoints|number_format(0, '.', ',') }}
-                                {% else %}
-                                    0
-                                {% endif %}
+                                {{ app.user.wallet.balance|number_format(0, '.', ',') }}
                             </span>
                         </a>
                     </div>
