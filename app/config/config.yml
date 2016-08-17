@@ -25,9 +25,8 @@ framework:
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        handler_id: session.handler.mongo
-        cookie_lifetime: 2592000 # optional, it is set to 30 days here
-        gc_maxlifetime: 2592000
+        handler_id: session.handler.native_file
+        save_path: '%kernel.root_dir%/sessions'
     fragments:       ~
     http_method_override: true
     assets: ~
@@ -93,8 +92,7 @@ fos_user:
     firewall_name: main
     user_class: FantasySports\AdminBundle\Entity\User
     registration:
-        form:
-            type: FantasySports\AdminBundle\Form\RegistrationFormType
+        form: ~
         confirmation:
             enabled: true
     from_email:

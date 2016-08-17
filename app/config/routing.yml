@@ -3,11 +3,11 @@ fos_user:
 
 fantasy_sports_admin:
     resource: "@FantasySportsAdminBundle/Resources/config/routing.yml"
-    prefix:   /book
-
-fantasy_sports_site:
-    resource: "@FantasySportsSiteBundle/Resources/config/routing.yml"
     prefix:   /
+
+#fantasy_sports_site:
+#    resource: "@FantasySportsSiteBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 app:
     resource: "@AppBundle/Controller/"

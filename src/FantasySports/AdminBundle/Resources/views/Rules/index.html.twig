@@ -1,0 +1,94 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Reglas' %}
+{% set pageDescription = 'Reglas' %}
+
+{% set scriptsToLoad = ['pass.js'] %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        Reglas
+    </li>
+{% endblock %}
+
+{% block body %}
+    <h1>Reglamento de Villano Fantasy</h1>
+    <ul>
+        <li>
+            <p>Se utilizarán los momios (Handicap) de caliente al lunes previo - o primera aparición - de cada semana para calificar cada uno de los partidos seleccionados</p>
+            <p>
+                <u><b>Ejemplo:</b></u><br />
+                Tampa Bay +3 y Atlanta -3<br />
+                Por lo que Tampa Bay debe de ganar por 3 o más puntos (3-0, 6-3, etc) para considerarse ganandor.<br />
+                Tampa Bay 21 - 14 Atlanta --> Gana Tampa Bay<br />
+                Tampa Bay 21 - 19 Atlanta --> Gana Atlanta
+            </p>
+        </li>
+        <li>Habrá 10 (diez) ganadores por semana determinado por la tabla semanal</li>
+        <li>La tabla semanal estará ordenada por los puntos acumulados durante la jornada en orden descendente</li>
+        <li>Cada ganador por jornada será acreedor a 1 (una) botella de su elección entre Tequila Azul, Ron Bacardi o Vodka Gotland</li>
+        <li>El ganador de cada semana recibirá un correo, el cual deberá de presentar para hacer válido su premio</li>
+        <li>
+            <p>En caso de empate, el criterio de desempate será el marcador del último partido del domingo y del lunes</p>
+            <p>
+                <u><b>Ejemplo:</b></u><br />
+                <b>Usuario 1</b>: 14 Puntos, <b>Usuario 2</b>: 14 Puntos<br />
+                - Partido 1: 21 - 14<br />
+                <b>Usuario 1</b>: 21-14 Marcador ganador, <b>Usuario 2</b>: 21-14 Marcador ganador<br />
+                - Partido 2: 21 - 14<br />
+                <b>Usuario 1</b>: 21-7 Equipo por marcador ganador, <b>Usuario 2</b>: 4-14 Equipo por marcador perdedor<br />
+                <b>Usuario 1 gana</b>
+            </p>
+            <p>
+                <u><b>Ejemplo 2:</b></u><br />
+                <b>Usuario 1</b>: 14 Puntos, <b>Usuario 2</b>: 14 Puntos<br />
+                - Partido 1: 21 - 14<br />
+                <b>Usuario 1</b>: 21-14 Marcador ganador, <b>Usuario 2</b>: 21-14 Marcador ganador<br />
+                - Partido 2: 21 - 14<br />
+                <b>Usuario 1</b>: 21-7 Equipo por marcador ganador, <b>Usuario 2</b>: 21-15 Equipo por marcador ganador<br />
+                <b>Usuario 2 gana</b> por menor diferencia absoluta (+1 vs -7) entre marcador real y marcador seleccionado
+            </p>
+        </li>
+        <li>Cada pronóstico ganador es válido hasta por una semana después del último partido</li>
+        <li>
+            Los puntos por elección son:
+            <ul>
+                <li>1 por elección acertada</li>
+                <li>0 por elección fallada</li>
+            </ul>
+        </li>
+        <li>Los playoffs se jugarán por marcador directo</li>
+        <li>Al final de la temporada - todos los partidos, incluyendo playoffs y super bowl - habrá 4 (cuatro) ganadores de un premio especial</li>
+        <li>El criterio para los ganadores de la temporada es la tabla general</li>
+        <li>
+            <p>La tabla general estará ordenada por la suma de la posición durante cada una de las semanas transcurridas de manera descendente</p>
+            <p>
+                <u><b>Ejemplo:</b></u><br />
+                <b>Usuario 1</b><br />
+                <b>Jornada 1:</b> Posición 3<br />
+                <b>Jornada 2:</b> Posición 3<br />
+                <b>Total:</b> 6 Puntos<br />
+                <br />
+                <b>Usuario 2</b><br />
+                <b>Jornada 1:</b> Posición 1<br />
+                <b>Jornada 2:</b> Posición 3<br />
+                <b>Total:</b> 4 Puntos<br />
+                <br />
+                <b>Tabla General</b><br />
+                <b>Posición 1:</b> Usuario 2 (4 Pts)<br />
+                <b>Posición 2:</b> Usuario 1 (6 Pts)<br />
+            </p>
+        </li>
+        <li>
+            En caso de empate a pesar de las consideraciones anteriores, se utilizará:
+            <ul>
+                <li>La fecha del pronóstico para el caso de tabla semanal</li>
+                <li>La fecha de registro en caso de tabla general</li>
+            </ul>
+        </li>
+    </ul>
+{% endblock %}

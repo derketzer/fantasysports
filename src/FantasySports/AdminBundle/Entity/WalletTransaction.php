@@ -44,10 +44,10 @@ class WalletTransaction
     private $wallet;
 
     /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="transactions")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $user;
+    private $user = 1;
 
     /**
      * Get id

@@ -5,6 +5,7 @@ namespace FantasySports\AdminBundle\Controller;
 use Aws\S3\S3Client;
 use FantasySports\AdminBundle\Entity\Pase;
 use FantasySports\AdminBundle\Entity\PaseDetail;
+use FantasySports\AdminBundle\Entity\WalletTransaction;
 use PKPass\PKPass;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,20 +15,18 @@ class PassController extends Controller
 {
     public function addAction(Request $request)
     {
+        $week = 1;
+
         $phaseRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Phase');
         $phase = $phaseRespository->findOneBy(Array('name'=>'week'));
 
         $sportMatchRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:SportMatch');
-        $matches = $sportMatchRespository->findBy(Array('phase'=>$phase->getId(), 'jornada'=>1), Array('matchDate'=>'ASC'));
-
-        $productRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:CartaProduct');
-        $products = $productRespository->findAll();
+        $matches = $sportMatchRespository->findBy(Array('phase'=>$phase->getId(), 'jornada'=>$week), Array('matchDate'=>'ASC'));
 
         $vars = Array(
             'matches' => $matches,
-            'products' => $products,
             'phase' => $phase->getId(),
-            'jornada' => 1
+            'jornada' => $week
         );
 
         if(!empty($request->get('match_id')))
@@ -38,14 +37,39 @@ class PassController extends Controller
     
     public function saveAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $wallet = $user->getWallet();
+
+        if($wallet->getBalance() <= 0){
+            return $this->redirectToRoute('fantasy_sports_admin_dashboard');
+        }
+
         $data = $request->request->all();
 
-        if($data['pass-type'] == 1)
+        /*if($data['pass-type'] == 1)
             $path = $this->generateQuinielaPass($data);
         else if($data['pass-type'] == 2)
-            $path = $this->generateMatchPass($data);
+            $path = $this->generateMatchPass($data);*/
+
+        $path = $this->generateQuinielaPass($data);
 
         $qrUrl = 'https://s3.amazonaws.com/fantasysports.mx/'.$path;
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $wallet = $user->getWallet();
+        $wallet->setBalance($wallet->getBalance()-1);
+        $em->persist($wallet);
+
+        $walletTransaction = new WalletTransaction();
+        $walletTransaction->setAmount(-1);
+        $walletTransaction->setCreatedAt(new \DateTime());
+        $walletTransaction->setWallet($wallet);
+        $walletTransaction->setUser($user);
+        $em->persist($walletTransaction);
+
+        $em->flush();
 
         return $this->render('FantasySportsAdminBundle:Pass:save.html.twig', Array('qrUrl'=>$qrUrl));
     }
@@ -81,27 +105,42 @@ class PassController extends Controller
             $paseDetail = new PaseDetail();
             $paseDetail->setSportMatch($match);
             $paseDetail->setCreatedAt(new \DateTime());
-            $paseDetail->setSelection($pronostico);
+
+            if(is_array($pronostico)) {
+                $homeScore = $pronostico['home'];
+                $awayScore = $pronostico['away'];
+
+                $paseDetail->setAwayScore($awayScore);
+                $paseDetail->setHomeScore($homeScore);
+            }else{
+                $paseDetail->setSelection($pronostico);
+            }
+
             $paseDetail->setPase($pase);
             $pase->addPaseDetail($paseDetail);
 
             $home = '';
             $none = ' - ';
             $away = '';
-            switch ($pronostico){
-                case 0:
-                    $home = 'X ';
-                    break;
+            if(!is_array($pronostico)) {
+                switch ($pronostico) {
+                    case 0:
+                        $home = 'X ';
+                        break;
 
-                case 1:
-                    $none = ' X ';
-                    break;
+                    case 1:
+                        $none = ' X ';
+                        break;
 
-                case 2:
-                    $away = ' X';
-                    break;
+                    case 2:
+                        $away = ' X';
+                        break;
+                }
+
+                $matchesBackField .= $home.$match->getHomeTeam()->getShortName().$none.$match->getAwayTeam()->getShortName().$away."\n";
+            }else{
+                $matchesBackField .= $match->getHomeTeam()->getShortName().' '.$homeScore.' - '.$awayScore.' '.$match->getAwayTeam()->getShortName()."\n";
             }
-            $matchesBackField .= $home.$match->getHomeTeam()->getShortName().$none.$match->getAwayTeam()->getShortName().$away."\n";
 
             if($lastMatchDate < $match->getMatchDate()->getTimestamp())
                 $lastMatchDate = $match->getMatchDate()->getTimestamp();
@@ -114,7 +153,7 @@ class PassController extends Controller
         $relevantDate = date('Y-m-d', $firstMatchDate)."T".date('H:i', $firstMatchDate)."-06:00";
         $couponLabel = date('d \d\e F, Y \@ H:i', $lastMatchDate);
         $couponValue = 'Quiniela';
-        $expirationDate = date('Y-m-d', $lastMatchDate+3600*24)."T".date('H:i', $lastMatchDate+3600*24)."-06:00";
+        $expirationDate = date('Y-m-d', $lastMatchDate+3600*24*7)."T".date('H:i', $lastMatchDate+3600*24*7)."-06:00";
         $createdAt = date('d.m.y');
 
         $passData = [
@@ -124,7 +163,7 @@ class PassController extends Controller
             'passTypeIdentifier'  => $this->container->getParameter('apple_pass_identifier'),
             'serialNumber'        => $this->generateRandomString(),
             'teamIdentifier'      => $this->container->getParameter('apple_team'),
-            "webServiceURL"       => "https://fantasysports.mx/",
+            "webServiceURL"       => $this->generateUrl('fantasy_sports_admin_pass_register'),
             "authenticationToken" => "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
             "barcode" => [
                 "message" => $barcode,
@@ -145,6 +184,11 @@ class PassController extends Controller
                 ],
                 "auxiliaryFields" => [
                     [
+                        "key" => "status",
+                        "label" => "Status",
+                        "value" => "Pendiente"
+                    ],
+                    [
                         "key" => "expires",
                         "label" => "Expira el",
                         "value" => $expirationDate,
@@ -152,7 +196,7 @@ class PassController extends Controller
                         "dateStyle" => "PKDateStyleShort"
                     ],
                     [
-                        "key" => "valid-for",
+                        "key" => "created-at",
                         "label" => "Creado el",
                         "value" => $createdAt
                     ]
@@ -166,12 +210,12 @@ class PassController extends Controller
                     [
                         "key" => "valid-for",
                         "label" => "Válido por",
-                        "value" => "1 botella"
+                        "value" => "1 botella (Azul, Bacardi o Gotland)"
                     ],
                     [
                         "key" => "terms",
                         "label" => "Términos y condiciones",
-                        "value" => "Válido hasta 24 horas después del día del último partido de la jornada."
+                        "value" => "Válido hasta la fecha mostrada en el cupón."
                     ]
                 ]
             ]
@@ -258,7 +302,7 @@ class PassController extends Controller
         $relevantDate = date('Y-m-d', $match->getMatchDate()->getTimestamp())."T".date('H:i', $match->getMatchDate()->getTimestamp())."-06:00";
         $couponLabel = date('d \d\e F, Y \@ H:i', $match->getMatchDate()->getTimestamp());
         $couponValue = $match->getHomeTeam()->getShortName()." ".$homeScore." - ".$awayScore." ".$match->getAwayTeam()->getShortName();
-        $expirationDate = date('Y-m-d', $match->getMatchDate()->getTimestamp()+3600*24)."T".date('H:i', $match->getMatchDate()->getTimestamp()+3600*24)."-06:00";
+        $expirationDate = date('Y-m-d', $match->getMatchDate()->getTimestamp()+3600*24*7)."T".date('H:i', $match->getMatchDate()->getTimestamp()+3600*24*7)."-06:00";
         $createdAt = date('d.m.y');
 
         $passData = [
@@ -296,7 +340,7 @@ class PassController extends Controller
                         "dateStyle" => "PKDateStyleShort"
                     ],
                     [
-                        "key" => "valid-for",
+                        "key" => "created-at",
                         "label" => "Creado el",
                         "value" => $createdAt
                     ]
@@ -310,7 +354,7 @@ class PassController extends Controller
                     [
                         "key" => "valid-for",
                         "label" => "Válido por",
-                        "value" => "1 botella"
+                        "value" => "1 botella (Azul, Bacardi o Gotland)"
                     ]
                 ]
             ]
@@ -371,6 +415,14 @@ class PassController extends Controller
     private function make_seed(){
         list($usec, $sec) = explode(' ', microtime());
         return (float) $sec + ((float) $usec * 100000);
+    }
+
+    public function registerAction(Request $request)
+    {
+        $logger = $this->get('logger');
+        $logger->info('--- Inicio Registro Pass ---');
+        $logger->info($request);
+        $logger->info('--- Fin Registro Pass ---');
     }
 
     public function listAction($status)

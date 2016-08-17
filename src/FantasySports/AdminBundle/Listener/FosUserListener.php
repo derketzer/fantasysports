@@ -43,7 +43,6 @@ class FosUserListener implements EventSubscriberInterface
     {
         $user = $userEvent->getUser();
         $parameters = $userEvent->getRequest()->get('fos_user_registration_form');
-        $invitationCode = $parameters['invitation'];
         try{
             $wallet = new Wallet();
             $wallet->setBalance($this->container->getParameter('default_balance'));
@@ -51,12 +50,6 @@ class FosUserListener implements EventSubscriberInterface
             $wallet->setCreatedAt(new \DateTime());
             $wallet->setUpdatedAt(new \DateTime());
             $this->em->persist($wallet);
-
-            $invitationRepository = $this->em->getRepository('FantasySportsAdminBundle:Invitation');
-            $invitation = $invitationRepository->findOneBy(['code'=>$invitationCode]);
-            $invitation->setAccepted(true);
-            $invitation->setAcceptedAt(new \DateTime());
-            $this->em->persist($invitation);
 
             $this->em->flush();
         }catch(\Exception $e){

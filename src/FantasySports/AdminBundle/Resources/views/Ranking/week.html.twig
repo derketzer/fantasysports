@@ -1,0 +1,59 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Ranking' %}
+{% set pageDescription = 'Tabla semanal' %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        Tabla semanal
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title">Tabla semanal</span>
+            </div>
+            <div class="widget-content table-container">
+                <table id="pass-tables" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Posición</th>
+                        <th>Usuario</th>
+                        <th>Puntos</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% if ranking is defined %}
+                        {% for rank in ranking %}
+                            <tr>
+                                <td>{{ rank.position }}</td>
+                                <td>{{ rank.user.username }}</td>
+                                <td>{{ rank.points }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if($.fn.dataTable) {
+                $('table#pass-tables').dataTable();
+            }
+        });
+    </script>
+{% endblock %}

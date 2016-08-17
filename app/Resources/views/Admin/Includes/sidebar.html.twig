@@ -3,15 +3,20 @@
     'fantasy_sports_admin_pass_active',
     'fantasy_sports_admin_pass_won',
     'fantasy_sports_admin_pass_lost'] %}
+{% set dashboardRoutes = ['fantasy_sports_admin_dashboard',
+    'fantasy_sports_ranking_week',
+    'fantasy_sports_ranking_general'] %}
 {% set inviteRoutes = ['fantasy_sports_admin_transaction_invite',
     'fantasy_sports_admin_transaction_invite_list'] %}
 {% set userRoutes = ['fantasy_sports_admin_user_list'] %}
 {% set newsRoutes = ['fantasy_sports_admin_news_list'] %}
 {% set eventRoutes = ['fantasy_sports_admin_event_list'] %}
+{% set transaciontRoutes = ['fantasy_sports_admin_transaction_list',
+    'fantasy_sports_admin_coupon'] %}
 <aside id="sidebar">
     <nav id="navigation" class="collapse">
         <ul>
-            <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_dashboard' %}active open{% endif %}">
+            <li class="{% if app.request.attributes.get('_route') in dashboardRoutes %}active open{% endif %}">
                 <span title="General">
                     <i class="icon-home"></i>
                     <span class="nav-title">General</span>
@@ -21,6 +26,18 @@
                     <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_dashboard' %}active{% endif %}">
                         <a href="{{ path('fantasy_sports_admin_dashboard') }}">
                             <i class="icol-dashboard"></i> Dashboard
+                        </a>
+                    </li>
+
+                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_ranking_week' %}active{% endif %}">
+                        <a href="{{ path('fantasy_sports_ranking_week') }}">
+                            <i class="icol-table"></i> Tabla semanal
+                        </a>
+                    </li>
+
+                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_ranking_general' %}active{% endif %}">
+                        <a href="{{ path('fantasy_sports_ranking_general') }}">
+                            <i class="icol-doc-excel-table"></i> Tabla general
                         </a>
                     </li>
                 </ul>
@@ -61,7 +78,7 @@
                 </ul>
             </li>
 
-            <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_transaction_list' %}active open{% endif %}">
+            <li class="{% if app.request.attributes.get('_route') in transaciontRoutes %}active open{% endif %}">
                 <span title="General">
                     <i class="icon-shopping-cart"></i>
                     <span class="nav-title">Transacc.</span>
@@ -73,24 +90,25 @@
                             <i class="icon-shopping-cart"></i> Todas
                         </a>
                     </li>
+
+                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_coupon' %}active{% endif %}">
+                        <a href="{{ path('fantasy_sports_admin_coupon') }}">
+                            <i class="icol-counter"></i> Agregar cupón
+                        </a>
+                    </li>
                 </ul>
             </li>
 
-            <li class="{% if app.request.attributes.get('_route') in inviteRoutes %}active open{% endif %}">
+            <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_rules' %}active open{% endif %}">
                 <span title="General">
-                    <i class="icon-file"></i>
-                    <span class="nav-title">Invitar</span>
+                    <i class="icon-book"></i>
+                    <span class="nav-title">Reglas</span>
                 </span>
 
                 <ul class="inner-nav">
-                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_transaction_invite' %}active{% endif %}">
-                        <a href="{{ path('fantasy_sports_admin_transaction_invite') }}">
-                            <i class="icon-add-contact"></i> Invitar
-                        </a>
-                    </li>
-                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_transaction_invite_list' %}active{% endif %}">
-                        <a href="{{ path('fantasy_sports_admin_transaction_invite_list') }}">
-                            <i class="icol-email"></i> Enviadas
+                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_rules' %}active{% endif %}">
+                        <a href="{{ path('fantasy_sports_admin_rules') }}">
+                            <i class="icon-book"></i> Reglas
                         </a>
                     </li>
                 </ul>

@@ -1,7 +1,7 @@
 {% extends '::Admin/base.html.twig' %}
 
-{% set pageTitle = 'Invitar' %}
-{% set pageDescription = 'Invitar a un amigo' %}
+{% set pageTitle = 'Cupón' %}
+{% set pageDescription = 'Agrega tu cupón' %}
 
 {% block breadcrumbs %}
     <li>
@@ -9,7 +9,7 @@
         <span class="divider">&raquo;</span>
     </li>
     <li>
-        <a href="{{ path('fantasy_sports_admin_dashboard') }}">Invitar</a>
+        <a href="{{ path('fantasy_sports_admin_dashboard') }}">Cupón</a>
     </li>
 {% endblock %}
 
@@ -17,25 +17,25 @@
     <div class="row-fluid">
         <div class="span12 widget">
             <div class="widget-header">
-                <span class="title"><i class="icon-resize-horizontal"></i> Invitar</span>
+                <span class="title"><i class="icon-resize-horizontal"></i> Cupón</span>
             </div>
             <div class="widget-content form-container">
-                <form class="form-horizontal" action="{{ path('fantasy_sports_admin_transaction_invite_send') }}" method="post">
-                    {% if error is not null %}
-                    <div class="alert alert-error">
-                        {{ error }}
-                    </div>
+                <form class="form-horizontal" action="{{ path('fantasy_sports_admin_coupon_add') }}" method="post">
+                    {% if app.request.query.get('error') is defined and app.request.query.get('error') is not null %}
+                        <div class="alert alert-error">
+                            {{ app.request.query.get('error') }}
+                        </div>
                     {% endif %}
-                    {% if success is not null %}
+                    {% if success is defined and success is not null %}
                         <div class="alert alert-success">
                             {{ success }}
                         </div>
                     {% endif %}
                     <div class="control-group">
-                        <label class="control-label" for="input01">Correo electrónico</label>
+                        <label class="control-label" for="input01">Cupón</label>
                         <div class="controls">
-                            <input type="text" class="span12" id="input01" name="email">
-                            <p class="help-block">Ingresa el correo electrónico de quien quieras invitar</p>
+                            <input type="text" class="span12" id="input01" name="coupon">
+                            <p class="help-block">Ingresa el cupón que recibiste</p>
                         </div>
                     </div>
                     <div class="form-actions">

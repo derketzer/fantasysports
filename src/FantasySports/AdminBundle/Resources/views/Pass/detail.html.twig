@@ -36,14 +36,14 @@
                             <tr>
                                 <td>{{ passDetail.sportMatch.matchDate|date('l, d M Y @ H:i') }}</td>
                                 <td>
-                                    {% if passDetail.selection == 0 %}<b>{% endif %}
-                                    {{ passDetail.sportMatch.homeTeam.shortName }}
-                                    {% if passDetail.selection == 0 %}</b>{% endif %}
+                                    {% if passDetail.selection is not null and passDetail.selection == 0 %}<b>{% endif %}
+                                    {{ passDetail.sportMatch.homeTeam.shortName }}{% if passDetail.selection is null %} ({{ passDetail.homeScore }}){% endif %}
+                                    {% if passDetail.selection is not null and passDetail.selection == 0 %}</b>{% endif %}
                                 </td>
                                 <td>
-                                    {% if passDetail.selection == 2 %}<b>{% endif %}
-                                    {{ passDetail.sportMatch.awayTeam.shortName }}
-                                    {% if passDetail.selection == 2 %}</b>{% endif %}
+                                    {% if passDetail.selection is not null and passDetail.selection == 2 %}<b>{% endif %}
+                                    {% if passDetail.selection is null %}({{ passDetail.awayScore }}) {% endif %}{{ passDetail.sportMatch.awayTeam.shortName }}
+                                    {% if passDetail.selection is not null and passDetail.selection == 2 %}</b>{% endif %}
                                 </td>
                             </tr>
                         {% endfor %}

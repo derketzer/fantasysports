@@ -20,4 +20,5 @@ parameters:
     aws_secret:        abc
     apple_team:        abc
     apple_pass_identifier: abc
-    default_balance:    123
+    default_balance:   123
+    betfair:           abc

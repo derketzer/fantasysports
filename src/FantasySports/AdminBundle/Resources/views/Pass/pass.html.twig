@@ -19,59 +19,17 @@
     <div class="row-fluid">
         <div class="span12 widget">
             <div class="widget-header">
-                <span class="title"><i class="icon-tag"></i> Selecciona tus opciones</span>
+                <span class="title"><i class="icon-tag"></i> Selecciona tu quiniela</span>
             </div>
             <div class="widget-content form-container">
                 <form class="vertical-form" action="{{ path('fantasy_sports_admin_pass_save') }}" method="POST">
-                    <fieldset id="tipo-boleto">
-                        <legend>Tipo de boleto</legend>
-                        <div class="control-group">
-                            <div class="controls">
-                                <label class="radio"><input type="radio" value="1" name="pass-type" class="required uniform"> Quiniela</label>
-                                <label class="radio"><input type="radio" value="2" name="pass-type" class="required uniform"{% if match_id is defined %}checked="checked"{% endif %}> Marcador</label>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset style="{% if match_id is not defined %}display:none;{% endif %}" id="boleto-marcador" class="boleto">
-                        <legend>Boleto por marcador</legend>
-                        <div class="control-group">
-                            <div class="controls">
-                                <select id="input16" name="pass-match" class="required span12">
-                                    {% if matches is defined %}
-                                        {% for match in matches %}
-                                            <option value="{{ match.id }}"{% if match_id is defined and match.id == match_id %}selected="selected"{% endif %}>
-                                                {{ match.matchDate|date('D, d M Y @ H:i') }} - {{ match.homeTeam.name }} vs {{ match.awayTeam.name }}
-                                            </option>
-                                        {% endfor %}
-                                    {% endif %}
-                                </select>
-
-                                <br />
-                                <br />
-
-                                <div class="row-fluid">
-                                    <div class="span4">
-                                        <input type="text"name="homeScore" placeholder="Local" style="text-align:center;">
-                                    </div>
-                                    <div class="span4" style="text-align:center;">
-                                        vs
-                                    </div>
-                                    <div class="span4" style="text-align:right;">
-                                        <input type="text" name="awayScore" placeholder="Visitante" style="text-align:center;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset style="display:none;" id="boleto-quiniela" class="boleto">
+                    <fieldset id="boleto-quiniela" class="boleto">
                         <legend>Boleto por quiniela</legend>
                         <div class="control-group">
                             <div class="controls">
                                 {% set fecha = "" %}
                                 {% if matches is defined %}
-                                    {% for match in matches %}
+                                    {% for key,match in matches %}
                                         {% if match.matchDate|date('Y-m-d') != fecha %}
                                             {% set fecha = match.matchDate|date('Y-m-d') %}
                                 </div>
@@ -98,17 +56,29 @@
                                             <div class="span3">
                                                 {{ match.matchDate|date('H:i') }}
                                             </div>
-                                            <div class="span3">
-                                                <input type="radio" name="matches[{{ match.id }}]" value="0" class="required uniform">
-                                                {{ match.homeTeam.name }}
-                                            </div>
-                                            <div class="span3">
-                                                <input type="radio" name="matches[{{ match.id }}]" value="1" class="required uniform">
-                                            </div>
-                                            <div class="span3">
-                                                <input type="radio" name="matches[{{ match.id }}]" value="2" class="required uniform">
-                                                {{ match.awayTeam.name }}
-                                            </div>
+                                            {% if key > 3 and (matches[key+1] is not defined or match.matchDate|date('Y-m-d') != matches[key+1].matchDate|date('Y-m-d')) %}
+                                                <div class="span3">
+                                                    <input type="text" name="matches[{{ match.id }}][home]" placeholder="{{ match.homeTeam.name }}" style="text-align:center;">
+                                                </div>
+                                                <div class="span3" style="text-align:center;">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="span3" style="text-align:right;">
+                                                    <input type="text" name="matches[{{ match.id }}][away]" placeholder="{{ match.awayTeam.name }}" style="text-align:center;">
+                                                </div>
+                                            {% else %}
+                                                <div class="span3">
+                                                    <input type="radio" name="matches[{{ match.id }}]" value="0" class="required uniform">
+                                                    {{ match.homeTeam.name }}
+                                                </div>
+                                                <div class="span3">
+                                                    <input type="radio" name="matches[{{ match.id }}]" value="1" class="required uniform">
+                                                </div>
+                                                <div class="span3">
+                                                    <input type="radio" name="matches[{{ match.id }}]" value="2" class="required uniform">
+                                                    {{ match.awayTeam.name }}
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     {% endfor %}
                                 {% endif %}
@@ -117,32 +87,12 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend>Premio</legend>
-                        <div class="control-group">
-                            <div class="controls">
-                                <select id="picklist-ex" name="picklist[]">
-                                    {% if products is defined %}
-                                        {% for product in products %}
-                                            <option value="{{ product.id }}">{{ product.category.name }} - {{ product.name }}</option>
-                                        {% endfor %}
-                                    {% endif %}
-                                </select>
-                                <p class="help-block">Usa shift o control para seleccionar varios elementos</p>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="input13">Puntos villanos</label>
-                            <div class="controls">
-                                <h1 id="pass-points">
-                                    0
-                                </h1>
-                            </div>
-                        </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Guardar cambios</button>
                             <button class="btn" type="reset">Cancelar</button>
                         </div>
                     </fieldset>
+
 
                     <input type="hidden" name="phase" value="{{ phase }}" />
                     <input type="hidden" name="jornada" value="{{ jornada }}" />

@@ -23,7 +23,7 @@ class SportMatch
 
     /**
      * @ORM\ManyToOne(targetEntity="Phase")
-     * @ORM\JoinColumn(name="pahse_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="phase_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $phase;
 
@@ -48,6 +48,13 @@ class SportMatch
     private $homeScore=0;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="home_odds", type="decimal", precision=5, scale=1)
+     */
+    private $homeOdds=0;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="awaySportMatches")
      * @ORM\JoinColumn(name="away_team_id", referencedColumnName="id", onDelete="SET NULL")
      **/
@@ -59,6 +66,13 @@ class SportMatch
      * @ORM\Column(name="away_score", type="integer")
      */
     private $awayScore=0;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="away_odds", type="decimal", precision=5, scale=1)
+     */
+    private $awayOdds=0;
 
     /**
      * @var \DateTime
@@ -211,6 +225,38 @@ class SportMatch
     public function setAwayTeam($awayTeam)
     {
         $this->awayTeam = $awayTeam;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHomeOdds()
+    {
+        return $this->homeOdds;
+    }
+
+    /**
+     * @param mixed $homeOdds
+     */
+    public function setHomeOdds($homeOdds)
+    {
+        $this->homeOdds = $homeOdds;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAwayOdds()
+    {
+        return $this->awayOdds;
+    }
+
+    /**
+     * @param int $awayOdds
+     */
+    public function setAwayOdds($awayOdds)
+    {
+        $this->awayOdds = $awayOdds;
     }
 }
 
