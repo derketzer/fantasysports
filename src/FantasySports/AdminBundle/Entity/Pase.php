@@ -33,7 +33,7 @@ class Pase
     /**
      * @var int
      *
-     * @ORM\Column(name="type", type="barcode")
+     * @ORM\Column(name="barcode", type="barcode")
      */
     private $barcode;
 
