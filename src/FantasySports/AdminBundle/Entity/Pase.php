@@ -31,11 +31,18 @@ class Pase
     private $type;
 
     /**
-     * @var int
+     * @var string
      *
      * @ORM\Column(name="barcode", type="string")
      */
     private $barcode;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="serial_number", type="string")
+     */
+    private $serialNumber;
 
     /**
      * @var int
@@ -184,6 +191,22 @@ class Pase
     public function setBarcode($barcode)
     {
         $this->barcode = $barcode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSerialNumber()
+    {
+        return $this->serialNumber;
+    }
+
+    /**
+     * @param int $serialNumber
+     */
+    public function setSerialNumber($serialNumber)
+    {
+        $this->serialNumber = $serialNumber;
     }
 }
 

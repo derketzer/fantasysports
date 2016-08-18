@@ -19,12 +19,12 @@ fantasy_sports_admin_pass_detail:
     defaults: { _controller: FantasySportsAdminBundle:Pass:detail, passId: 0 }
 
 fantasy_sports_admin_pass_register:
-    path:     /pass/register/v1/devices/{deviceId}/registrations/{identifier}/{barcode}
+    path:     /pass/register/v1/devices/{deviceId}/registrations/{passId}/{serialNumber}
     defaults: { _controller: FantasySportsAdminBundle:Pass:register }
     methods:  [POST]
 
-fantasy_sports_admin_pass_register:
-    path:     /pass/register/v1/devices/{deviceId}/registrations/{identifier}/{barcode}
+fantasy_sports_admin_pass_deregister:
+    path:     /pass/register/v1/devices/{deviceId}/registrations/{passId}/{serialNumber}
     defaults: { _controller: FantasySportsAdminBundle:Pass:deregister }
     methods:  [DELETE]
 

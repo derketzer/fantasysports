@@ -5,6 +5,7 @@ namespace FantasySports\AdminBundle\Controller;
 use Aws\S3\S3Client;
 use FantasySports\AdminBundle\Entity\Pase;
 use FantasySports\AdminBundle\Entity\PaseDetail;
+use FantasySports\AdminBundle\Entity\PaseDevice;
 use FantasySports\AdminBundle\Entity\WalletTransaction;
 use PKPass\PKPass;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -150,6 +151,7 @@ class PassController extends Controller
         }
 
         $barcode = $this->generateRandomString();
+        $serialNumber = $this->generateRandomString();
         $relevantDate = date('Y-m-d', $firstMatchDate)."T".date('H:i', $firstMatchDate)."-06:00";
         $couponLabel = date('d \d\e F, Y \@ H:i', $lastMatchDate);
         $couponValue = 'Quiniela';
@@ -157,13 +159,14 @@ class PassController extends Controller
         $createdAt = date('d.m.y');
 
         $pase->setBarcode($barcode);
+        $pase->setSerialNumber($serialNumber);
 
         $passData = [
             'formatVersion'       => 1,
             'description'         => 'Quiniela del Villano Chelero',
             'organizationName'    => 'El Villano Chelero',
             'passTypeIdentifier'  => $this->container->getParameter('apple_pass_identifier'),
-            'serialNumber'        => $this->generateRandomString(),
+            'serialNumber'        => $serialNumber,
             'teamIdentifier'      => $this->container->getParameter('apple_team'),
             "webServiceURL"       => 'https://villano-fantasy.com/pass/register',
             "authenticationToken" => "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
@@ -419,24 +422,29 @@ class PassController extends Controller
         return (float) $sec + ((float) $usec * 100000);
     }
 
-    public function registerAction(Request $request, $deviceId, $identifier, $barcode)
+    public function registerAction($deviceId, $passId, $serialNumber)
     {
-        $logger = $this->get('logger');
-        $logger->info('--- Inicio Registro Pass ---');
-        $logger->info($request);
-        $logger->info('--- Fin Registro Pass ---');
+        $paseDevice = new PaseDevice();
+        $paseDevice->setCreatedAt(new \DateTime());
+        $paseDevice->setAuthToken('a');
+        $paseDevice->setDeviceId($deviceId);
+        $paseDevice->setPassId($passId);
+        $paseDevice->setPushToken('b');
+        $paseDevice->setSerialNumber($serialNumber);
 
-        return new Response();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($paseDevice);
+        $em->flush();
+
+        return new Response('', 200);
     }
 
-    public function deregisterAction(Request $request, $deviceId, $identifier, $barcode)
+    public function deregisterAction($deviceId, $passId, $serialNumber)
     {
-        $logger = $this->get('logger');
-        $logger->info('--- Inicio Deregistro Pass ---');
-        $logger->info($request);
-        $logger->info('--- Fin Deregistro Pass ---');
+        $paseDeviceRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:PaseDevice');
+        $paseDevice = $paseDeviceRespository->findOneBy(['deviceId'=>$deviceId, 'passId'=>$passId, 'serialNumber'=>$serialNumber]);
 
-        return new Response();
+        return new Response('', 200);
     }
 
     public function listAction($status)

@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3d5ccd7-df74-4adc-b162-71a96c239378" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/PaseDevice.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Repository/PaseDeviceRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/sessions/sess_ckrstmqf9lko9au6pc8pqclfc1" afterPath="$PROJECT_DIR$/app/sessions/sess_ckrstmqf9lko9au6pc8pqclfc1" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Pase.php" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Pase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml" />
     </list>
     <ignored path="FantasySports.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,24 +29,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PassController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PassController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="436" column="41" selection-start-line="436" selection-start-column="41" selection-end-line="436" selection-end-column="41" />
+            <state relative-caret-position="444">
+              <caret line="430" column="38" selection-start-line="430" selection-start-column="38" selection-end-line="430" selection-end-column="38" />
               <folding>
-                <marker date="1471480179000" expanded="false" signature="10656:10691" ph="SportMatch" />
+                <element signature="e#16710#16747#1#PHP" expanded="true" />
+                <marker date="1471482537000" expanded="false" signature="10791:10826" ph="SportMatch" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Notification.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Notification.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -49,8 +45,8 @@
       <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="87" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="87" />
+            <state relative-caret-position="315">
+              <caret line="21" column="72" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -68,7 +64,6 @@
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" />
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Listener/FosUserListener.php" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Coupon/add.html.twig" />
         <option value="$PROJECT_DIR$/src/FantasySports/SiteBundle/Resources/config/routing.yml" />
@@ -91,9 +86,11 @@
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/WalletTransaction.php" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Pase.php" />
+        <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/PaseDevice.php" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php" />
-        <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Pase.php" />
       </list>
     </option>
   </component>
@@ -504,6 +501,32 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Repository">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="FantasySports">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="FantasySports">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="AdminBundle">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="Listener">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
@@ -792,12 +815,12 @@
       <option name="presentableId" value="Default" />
       <updated>1471458828600</updated>
       <workItem from="1471458830340" duration="29000" />
-      <workItem from="1471458862559" duration="16435000" />
+      <workItem from="1471458862559" duration="18195000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16464000" />
+    <option name="totallyTimeSpent" value="18224000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="23" width="2560" height="1413" extended-state="6" />
@@ -867,14 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1104">
-          <caret line="94" column="15" selection-start-line="94" selection-start-column="15" selection-end-line="94" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -1177,37 +1192,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml">
+    <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/PaseDevice.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="87" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="87" />
+        <state relative-caret-position="165">
+          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php">
+    <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="436" column="41" selection-start-line="436" selection-start-column="41" selection-end-line="436" selection-end-column="41" />
-          <folding>
-            <marker date="1471480179000" expanded="false" signature="10656:10691" ph="SportMatch" />
-          </folding>
+        <state relative-caret-position="315">
+          <caret line="21" column="72" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="72" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Pase.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+        <state relative-caret-position="1134">
+          <caret line="193" column="5" selection-start-line="193" selection-start-column="5" selection-end-line="193" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Notification.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-546">
+          <caret line="44" column="7" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config_prod.yml">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="56" column="25" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="430" column="38" selection-start-line="430" selection-start-column="38" selection-end-line="430" selection-end-column="38" />
+          <folding>
+            <element signature="e#16710#16747#1#PHP" expanded="true" />
+            <marker date="1471482537000" expanded="false" signature="10791:10826" ph="SportMatch" />
+          </folding>
         </state>
       </provider>
     </entry>
