@@ -2,41 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3d5ccd7-df74-4adc-b162-71a96c239378" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/CouponController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/RankingController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/RulesController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Coupon/add.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Email/selection.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Email/winner_coupon.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Email/winners.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Ranking/general.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Ranking/week.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Rules/index.html.twig" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/InvitationController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Invitation.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Invitation/invite.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Invitation/list.html.twig" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Includes/header.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Includes/header.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Includes/sidebar.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Includes/sidebar.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/parameters.yml.dist" afterPath="$PROJECT_DIR$/app/config/parameters.yml.dist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/SportMatch.php" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/SportMatch.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/WalletTransaction.php" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/WalletTransaction.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Listener/FosUserListener.php" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Listener/FosUserListener.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Pass/detail.html.twig" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Pass/detail.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Pass/pass.html.twig" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Pass/pass.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Transaction/list.html.twig" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Transaction/list.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/SiteBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/FantasySports/SiteBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/var/SymfonyRequirements.php" afterPath="$PROJECT_DIR$/var/SymfonyRequirements.php" />
     </list>
     <ignored path="FantasySports.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,6 +58,7 @@
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
       </list>
     </option>
   </component>
@@ -790,12 +757,12 @@
       <option name="presentableId" value="Default" />
       <updated>1471458828600</updated>
       <workItem from="1471458830340" duration="29000" />
-      <workItem from="1471458862559" duration="14646000" />
+      <workItem from="1471458862559" duration="14945000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14675000" />
+    <option name="totallyTimeSpent" value="14974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="23" width="2560" height="1413" extended-state="6" />
@@ -1179,6 +1146,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="63" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
           <folding />
         </state>
       </provider>
