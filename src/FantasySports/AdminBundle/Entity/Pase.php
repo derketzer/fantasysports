@@ -33,6 +33,13 @@ class Pase
     /**
      * @var int
      *
+     * @ORM\Column(name="type", type="barcode")
+     */
+    private $barcode;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="status", type="integer")
      */
     private $status;
@@ -161,6 +168,22 @@ class Pase
 
     public function addPaseDetail($paseDetail){
         $this->paseDetails[] = $paseDetail;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBarcode()
+    {
+        return $this->barcode;
+    }
+
+    /**
+     * @param int $barcode
+     */
+    public function setBarcode($barcode)
+    {
+        $this->barcode = $barcode;
     }
 }
 

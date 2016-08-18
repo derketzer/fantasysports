@@ -156,6 +156,8 @@ class PassController extends Controller
         $expirationDate = date('Y-m-d', $lastMatchDate+3600*24*7)."T".date('H:i', $lastMatchDate+3600*24*7)."-06:00";
         $createdAt = date('d.m.y');
 
+        $pase->setBarcode($barcode);
+
         $passData = [
             'formatVersion'       => 1,
             'description'         => 'Quiniela del Villano Chelero',
@@ -163,7 +165,7 @@ class PassController extends Controller
             'passTypeIdentifier'  => $this->container->getParameter('apple_pass_identifier'),
             'serialNumber'        => $this->generateRandomString(),
             'teamIdentifier'      => $this->container->getParameter('apple_team'),
-            "webServiceURL"       => $this->generateUrl('fantasy_sports_admin_pass_register'),
+            "webServiceURL"       => 'https://villano-fantasy.com/pass/register',
             "authenticationToken" => "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
             "barcode" => [
                 "message" => $barcode,
@@ -263,7 +265,7 @@ class PassController extends Controller
         return $path;
     }
 
-    private function generateMatchPass($data)
+    /*private function generateMatchPass($data)
     {
         $pass = new PKPass();
 
@@ -400,7 +402,7 @@ class PassController extends Controller
         $em->flush();
 
         return $path;
-    }
+    }*/
 
     private function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -417,12 +419,24 @@ class PassController extends Controller
         return (float) $sec + ((float) $usec * 100000);
     }
 
-    public function registerAction(Request $request)
+    public function registerAction(Request $request, $deviceId, $identifier, $barcode)
     {
         $logger = $this->get('logger');
         $logger->info('--- Inicio Registro Pass ---');
         $logger->info($request);
         $logger->info('--- Fin Registro Pass ---');
+
+        return new Response();
+    }
+
+    public function deregisterAction(Request $request, $deviceId, $identifier, $barcode)
+    {
+        $logger = $this->get('logger');
+        $logger->info('--- Inicio Deregistro Pass ---');
+        $logger->info($request);
+        $logger->info('--- Fin Deregistro Pass ---');
+
+        return new Response();
     }
 
     public function listAction($status)

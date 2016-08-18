@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3d5ccd7-df74-4adc-b162-71a96c239378" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/sessions/sess_ckrstmqf9lko9au6pc8pqclfc1" afterPath="$PROJECT_DIR$/app/sessions/sess_ckrstmqf9lko9au6pc8pqclfc1" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Pase.php" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Pase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml" />
     </list>
     <ignored path="FantasySports.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,7 +25,30 @@
     <favorites_list name="FantasySports" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="PassController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="714">
+              <caret line="436" column="41" selection-start-line="436" selection-start-column="41" selection-end-line="436" selection-end-column="41" />
+              <folding>
+                <marker date="1471480179000" expanded="false" signature="10656:10691" ph="SportMatch" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="87" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,9 +82,10 @@
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/views/Email/winner_coupon.html.twig" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/WalletTransaction.php" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Pase.php" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php" />
-        <option value="$PROJECT_DIR$/composer.json" />
       </list>
     </option>
   </component>
@@ -757,18 +784,18 @@
       <option name="presentableId" value="Default" />
       <updated>1471458828600</updated>
       <workItem from="1471458830340" duration="29000" />
-      <workItem from="1471458862559" duration="14945000" />
+      <workItem from="1471458862559" duration="16360000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14974000" />
+    <option name="totallyTimeSpent" value="16389000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="23" width="2560" height="1413" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1584591" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1584591" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329296" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1058,14 +1085,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/SportMatch.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">
@@ -1134,27 +1153,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php">
+    <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="249" column="39" selection-start-line="249" selection-start-column="39" selection-end-line="249" selection-end-column="39" />
+        <state relative-caret-position="510">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Entity/Pase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="170" column="5" selection-start-line="170" selection-start-column="5" selection-end-line="170" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="63" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+        <state relative-caret-position="390">
+          <caret line="26" column="87" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/src/FantasySports/AdminBundle/Controller/PassController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="714">
+          <caret line="436" column="41" selection-start-line="436" selection-start-column="41" selection-end-line="436" selection-end-column="41" />
+          <folding>
+            <marker date="1471480179000" expanded="false" signature="10656:10691" ph="SportMatch" />
+          </folding>
         </state>
       </provider>
     </entry>
