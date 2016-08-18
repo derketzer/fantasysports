@@ -303,7 +303,7 @@ class PassController extends Controller
         $paseDevice = $paseDeviceRespository->findOneBy(['deviceId'=>$deviceId, 'passId'=>$passId, 'serialNumber'=>$serialNumber]);
 
         if(!empty($paseDevice)) {
-            $this->getDoctrine()->getManager()->detach($paseDevice);
+            $this->getDoctrine()->getManager()->remove($paseDevice);
             $this->getDoctrine()->getManager()->flush();
         }
         return new Response('', 200);
