@@ -49,12 +49,34 @@ class User extends BaseUser
      */
     private $rankings;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Coupon", mappedBy="user")
+     */
+    private $coupons;
+
     public function __construct()
     {
         parent::__construct();
         $this->passes = new ArrayCollection();
         $this->rankings = new ArrayCollection();
         $this->transactions = new ArrayCollection();
+        $this->coupons = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCoupons()
+    {
+        return $this->coupons;
+    }
+
+    /**
+     * @param mixed $coupons
+     */
+    public function setCoupons($coupons)
+    {
+        $this->coupons = $coupons;
     }
 
     /**

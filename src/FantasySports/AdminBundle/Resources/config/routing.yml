@@ -60,6 +60,10 @@ fantasy_sports_admin_coupon:
     path:     /coupon
     defaults: { _controller: FantasySportsAdminBundle:Coupon:coupon }
 
+fantasy_sports_admin_coupon_list:
+    path:     /coupons
+    defaults: { _controller: FantasySportsAdminBundle:Coupon:list }
+
 fantasy_sports_admin_coupon_add:
     path:     /coupon/add
     defaults: { _controller: FantasySportsAdminBundle:Coupon:add }

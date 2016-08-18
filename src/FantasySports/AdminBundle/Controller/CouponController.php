@@ -13,6 +13,14 @@ class CouponController extends Controller
         return $this->render('@FantasySportsAdmin/Coupon/add.html.twig');
     }
 
+    public function listAction()
+    {
+        $couponRespository = $this->getDoctrine()->getManager()->getRepository('FantasySportsAdminBundle:Coupon');
+        $coupons = $couponRespository->findBy(['season'=>1]);
+
+        return $this->render('@FantasySportsAdmin/Coupon/list.html.twig', ['coupons'=>$coupons]);
+    }
+
     public function addAction(Request $request)
     {
         $couponString = $request->request->get('coupon');
@@ -30,10 +38,12 @@ class CouponController extends Controller
             return $this->redirectToRoute('fantasy_sports_admin_coupon', ['error'=>'El cupón no existe o ya fue usado!']);
         }
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $couponTemp->setUsed(true);
+        $couponTemp->setUser($user);
         $em->persist($couponTemp);
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         $wallet = $user->getWallet();
         $wallet->setBalance(16);
 
@@ -44,7 +54,7 @@ class CouponController extends Controller
         $walletTransaction->setCreatedAt(new \DateTime());
         $walletTransaction->setWallet($wallet);
 
-        $adminUser = $userRespository->findOneBy(['id'=>1]);
+        $adminUser = $userRespository->findOneBy(['username'=>'admin']);
         $walletTransaction->setUser($adminUser);
 
         $em->persist($walletTransaction);

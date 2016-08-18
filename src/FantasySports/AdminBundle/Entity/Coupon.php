@@ -49,6 +49,11 @@ class Coupon
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="coupons")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
+     **/
+    private $user;
 
     /**
      * Get id
@@ -154,6 +159,22 @@ class Coupon
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 }
 

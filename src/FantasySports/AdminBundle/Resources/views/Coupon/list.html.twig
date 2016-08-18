@@ -1,7 +1,7 @@
 {% extends '::Admin/base.html.twig' %}
 
-{% set pageTitle = 'Usuarios' %}
-{% set pageDescription = 'Todos los usuarios registrados' %}
+{% set pageTitle = 'Passes' %}
+{% set pageDescription = 'Todos los passes' %}
 
 {% block breadcrumbs %}
     <li>
@@ -9,7 +9,7 @@
         <span class="divider">&raquo;</span>
     </li>
     <li>
-        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Usuarios</a>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Pass</a>
     </li>
 {% endblock %}
 
@@ -18,37 +18,39 @@
 
         <div class="span12 widget">
             <div class="widget-header">
-                <span class="title">Usuarios registrados</span>
+                <span class="title">Passes</span>
             </div>
             <div class="widget-content table-container">
                 <table id="pass-tables" class="table table-striped">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Balance</th>
-                        <th>Email</th>
-                        <th>Username</th>
-                        <th>Última conexión</th>
-                        <th>Fecha de registro</th>
+                        <th>Coupon</th>
+                        <th>Usuario</th>
+                        <th>Usado</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    {% if users is defined %}
-                        {% for user in users %}
+                    {% if coupons is defined %}
+                        {% for coupon in coupons %}
                             <tr>
-                                <td>{{ user.id }}</td>
+                                <td>{{ coupon.id }}</td>
+                                <td>{{ coupon.coupon }}</td>
                                 <td>
-                                    {% if user.wallet is not null %}
-                                        {{ user.wallet.balance }}
+                                    {% if coupon.user is defined %}
+                                        {{ coupon.user.username }}
                                     {% else %}
                                         -
                                     {% endif %}
                                 </td>
-                                <td>{{ user.email }}</td>
-                                <td>{{ user.username }}</td>
-                                <td>{{ user.lastLogin|date('d-m-Y @ H:i') }}</td>
-                                <td>{{ user.registeredAt|date('d-m-Y @ H:i') }}</td>
+                                <td>
+                                    {% if coupon.used == 0 %}
+                                        <span class="label">Pendiente</span>
+                                    {% else %}
+                                        <span class="label label-success">Usado</span>
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                     {% endif %}
