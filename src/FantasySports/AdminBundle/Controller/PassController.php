@@ -46,12 +46,6 @@ class PassController extends Controller
         }
 
         $data = $request->request->all();
-
-        /*if($data['pass-type'] == 1)
-            $path = $this->generateQuinielaPass($data);
-        else if($data['pass-type'] == 2)
-            $path = $this->generateMatchPass($data);*/
-
         $path = $this->generateQuinielaPass($data);
 
         $qrUrl = 'https://s3.amazonaws.com/fantasysports.mx/'.$path;
@@ -168,7 +162,7 @@ class PassController extends Controller
             'passTypeIdentifier'  => $this->container->getParameter('apple_pass_identifier'),
             'serialNumber'        => $serialNumber,
             'teamIdentifier'      => $this->container->getParameter('apple_team'),
-            "webServiceURL"       => 'https://villano-fantasy.com/pass/register',
+            "webServiceURL"       => 'http://local.villano-fantasy.com:8080/pass/register',
             "authenticationToken" => "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
             "barcode" => [
                 "message" => $barcode,
@@ -268,145 +262,6 @@ class PassController extends Controller
         return $path;
     }
 
-    /*private function generateMatchPass($data)
-    {
-        $pass = new PKPass();
-
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
-        $pase = new Pase();
-        $pase->setType(1);
-        $pase->setStatus(0);
-        $pase->setCreatedAt(new \DateTime());
-        $pase->setUser($user);
-
-        srand($this->make_seed());
-
-        $pass->setCertificate($this->container->get('kernel')->getRootDir().'/VillanoChelero.p12');
-        $pass->setCertificatePassword($this->container->getParameter('pass_pass'));
-        $pass->setWWDRcertPath($this->container->get('kernel')->getRootDir().'/AppleWWDRCA.pem');
-
-        $pass_match = $data['pass-match'];
-        $homeScore = $data['homeScore'];
-        $awayScore = $data['awayScore'];
-
-        $sportMatchRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:SportMatch');
-        $match = $sportMatchRespository->findOneBy(Array('id'=>$pass_match));
-
-        $paseDetail = new PaseDetail();
-        $paseDetail->setSportMatch($match);
-        $paseDetail->setCreatedAt(new \DateTime());
-        $paseDetail->setAwayScore($awayScore);
-        $paseDetail->setHomeScore($homeScore);
-        $paseDetail->setPase($pase);
-        $pase->addPaseDetail($paseDetail);
-
-        $barcode = $this->generateRandomString();
-        $relevantDate = date('Y-m-d', $match->getMatchDate()->getTimestamp())."T".date('H:i', $match->getMatchDate()->getTimestamp())."-06:00";
-        $couponLabel = date('d \d\e F, Y \@ H:i', $match->getMatchDate()->getTimestamp());
-        $couponValue = $match->getHomeTeam()->getShortName()." ".$homeScore." - ".$awayScore." ".$match->getAwayTeam()->getShortName();
-        $expirationDate = date('Y-m-d', $match->getMatchDate()->getTimestamp()+3600*24*7)."T".date('H:i', $match->getMatchDate()->getTimestamp()+3600*24*7)."-06:00";
-        $createdAt = date('d.m.y');
-
-        $passData = [
-            'formatVersion'       => 1,
-            'description'         => 'Quiniela del Villano Chelero',
-            'organizationName'    => 'El Villano Chelero',
-            'passTypeIdentifier'  => $this->container->getParameter('apple_pass_identifier'),
-            'serialNumber'        => $this->generateRandomString(),
-            'teamIdentifier'      => $this->container->getParameter('apple_team'),
-            "webServiceURL"       => "https://fantasysports.mx/",
-            "authenticationToken" => "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
-            "barcode" => [
-                "message" => $barcode,
-                "format" => "PKBarcodeFormatCode128",
-                "messageEncoding" => "iso-8859-1"
-            ],
-            "relevantDate" => $relevantDate,
-            "logoText" => "El Villano Chelero",
-            "foregroundColor" => "rgb(238, 17, 48)",
-            "backgroundColor" => "rgb(250, 150, 36)",
-            "coupon" => [
-                "primaryFields" => [
-                    [
-                        "key" => "offer",
-                        "label" => $couponLabel,
-                        "value" => $couponValue
-                    ]
-                ],
-                "auxiliaryFields" => [
-                    [
-                        "key" => "expires",
-                        "label" => "Expira el",
-                        "value" => $expirationDate,
-                        "isRelative" => true,
-                        "dateStyle" => "PKDateStyleShort"
-                    ],
-                    [
-                        "key" => "created-at",
-                        "label" => "Creado el",
-                        "value" => $createdAt
-                    ]
-                ],
-                "backFields" => [
-                    [
-                        "key" => "terms",
-                        "label" => "Términos y condiciones",
-                        "value" => "Válido hasta 24 horas después del día del partido."
-                    ],
-                    [
-                        "key" => "valid-for",
-                        "label" => "Válido por",
-                        "value" => "1 botella (Azul, Bacardi o Gotland)"
-                    ]
-                ]
-            ]
-        ];
-
-        $pass->setJSON(json_encode($passData));
-
-        $pass->addFile($this->container->get('kernel')->getRootDir().'/Resources/pass/icon.png');
-        $pass->addFile($this->container->get('kernel')->getRootDir().'/Resources/pass/icon@2x.png');
-        $pass->addFile($this->container->get('kernel')->getRootDir().'/Resources/pass/logo.png');
-
-        if ($pass->checkError($error) == true) {
-            exit('An error occured: ' . $error);
-        }
-
-        $result = $pass->create(false);
-
-        if ($result == false) { // Create and output the PKPass
-            echo $pass->getError();
-            exit();
-        }
-
-        $s3Client = new S3Client([
-            'version' => 'latest',
-            'region'  => 'us-east-1',
-            'credentials' => [
-                'key'    => $this->container->getParameter('aws_key'),
-                'secret' => $this->container->getParameter('aws_secret')
-            ]
-        ]);
-
-        $path = 'passes/villano-chelero/'.$user->getId().'/'.time().'.pkpass';
-
-        $s3Client->putObject([
-            'Bucket' => 'fantasysports.mx',
-            'Key'    => $path,
-            'ACL'    => 'public-read',
-            'Body'   => $result,
-            'ContentType' => 'application/vnd.apple.pkpass'
-        ]);
-
-        $em->persist($pase);
-        $em->flush();
-
-        return $path;
-    }*/
-
     private function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -422,14 +277,17 @@ class PassController extends Controller
         return (float) $sec + ((float) $usec * 100000);
     }
 
-    public function registerAction($deviceId, $passId, $serialNumber)
+    public function registerAction(Request $request, $deviceId, $passId, $serialNumber)
     {
+        $requestBody = json_decode($request->getContent(), true);
+        $authHeader = str_replace('ApplePass ', '', $request->headers->get('Authorization'));
+
         $paseDevice = new PaseDevice();
         $paseDevice->setCreatedAt(new \DateTime());
-        $paseDevice->setAuthToken('a');
+        $paseDevice->setAuthToken($authHeader);
         $paseDevice->setDeviceId($deviceId);
         $paseDevice->setPassId($passId);
-        $paseDevice->setPushToken('b');
+        $paseDevice->setPushToken($requestBody['pushToken']);
         $paseDevice->setSerialNumber($serialNumber);
 
         $em = $this->getDoctrine()->getManager();
@@ -444,6 +302,10 @@ class PassController extends Controller
         $paseDeviceRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:PaseDevice');
         $paseDevice = $paseDeviceRespository->findOneBy(['deviceId'=>$deviceId, 'passId'=>$passId, 'serialNumber'=>$serialNumber]);
 
+        if(!empty($paseDevice)) {
+            $this->getDoctrine()->getManager()->detach($paseDevice);
+            $this->getDoctrine()->getManager()->flush();
+        }
         return new Response('', 200);
     }
 
