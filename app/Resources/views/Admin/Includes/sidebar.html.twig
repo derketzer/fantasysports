@@ -14,6 +14,9 @@
 {% set eventRoutes = ['fantasy_sports_admin_event_list'] %}
 {% set transaciontRoutes = ['fantasy_sports_admin_transaction_list',
     'fantasy_sports_admin_coupon'] %}
+{% set ticketRoutes = ['fantasy_sports_ticket_new',
+    'fantasy_sports_ticket_list',
+    'fantasy_sports_ticket_view'] %}
 <aside id="sidebar">
     <nav id="navigation" class="collapse">
         <ul>
@@ -95,6 +98,26 @@
                     <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_admin_coupon' %}active{% endif %}">
                         <a href="{{ path('fantasy_sports_admin_coupon') }}">
                             <i class="icol-counter"></i> Agregar cupón
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="{% if app.request.attributes.get('_route') in ticketRoutes %}active open{% endif %}">
+                <span title="General">
+                    <i class="icon-fire"></i>
+                    <span class="nav-title">Ayuda</span>
+                </span>
+
+                <ul class="inner-nav">
+                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_ticket_new' %}active{% endif %}">
+                        <a href="{{ path('fantasy_sports_ticket_new') }}">
+                            <i class="icol-stamp"></i> Nuevo ticket
+                        </a>
+                    </li>
+                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_ticket_list' %}active{% endif %}">
+                        <a href="{{ path('fantasy_sports_ticket_list') }}">
+                            <i class="icol-ticket"></i> Mis tickets
                         </a>
                     </li>
                 </ul>

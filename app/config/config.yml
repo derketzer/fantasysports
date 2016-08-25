@@ -96,5 +96,5 @@ fos_user:
         confirmation:
             enabled: true
     from_email:
-        address:        noreply@fantasysports.mx
-        sender_name:    Fantasy Sports Team
+        address:        noreply@villano-fantasy.com
+        sender_name:    Villano Fantasy

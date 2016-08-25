@@ -1,0 +1,67 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Ticket' %}
+{% set pageDescription = 'Ticket' %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Tickets</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    {% if ticket is defined %}
+    <div class="row-fluid">
+
+        <div class="span12">
+            <div class="widget">
+                <div class="widget-header">
+                    <span class="title">
+                        <i class="icon-comments"></i> Ticket {{ ticket.id }}
+                    </span>
+                </div>
+                <div class="widget-content chat-box">
+                    <p class="alert alert-info">
+                        Reportado el: {{ ticket.createdAt|date('d-m-Y @ H:i') }}<br />
+                        Resumen: {{ ticket.summary }}<br />
+                        Problema: {{ ticket.description }}
+                    </p>
+                    <ul class="thumbnails">
+                        {% for answer in ticket.answers %}
+                        <li class="{% if app.user.id == answer.user.id %}me{% else %}others{% endif %}">
+                            <div class="message">
+                                <span class="name">{{ answer.user.username }}</span>
+                                {{ answer.answer }}
+                                <span class="time">{{ answer.createdAt|date('d-m-Y @ H:i') }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    {% if not ticket.solved %}
+                        <form method="post" action="{{ path('fantasy_sports_ticket_answer_save', {'ticketId':ticket.id}) }}">
+                            <div class="message-form">
+                                <div class="row-fluid">
+                                    <div class="span10">
+                                        <input type="text" name="answer" class="span12" placeholder="Escribe una respuesta...">
+                                    </div>
+                                    <div class="span2">
+                                        <button type="submit" class="btn btn-block btn-primary">Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Tickets' %}
+{% set pageDescription = 'Todos los tickets generados' %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Tickets</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title">Tickets generados</span>
+            </div>
+            <div class="widget-content table-container">
+                <table id="pass-tables" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Resumen</th>
+                        <th>Descripción</th>
+                        <th>Creado el</th>
+                        <th>Resuelto</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% if tickets is defined %}
+                        {% for ticket in tickets %}
+                            <tr>
+                                <td>{{ ticket.id }}</td>
+                                <td>
+                                    <a href="{{ path('fantasy_sports_ticket_view', {'ticketId':ticket.id}) }}">
+                                        {{ ticket.summary }}
+                                    </a>
+                                </td>
+                                <td>{{ ticket.description }}</td>
+                                <td>{{ ticket.createdAt|date('d-m-Y @ H:i') }}</td>
+                                <td>
+                                    {% if ticket.solved %}
+                                        Sí ({{ ticket.solvedAt|date('d-m-Y @ H:i') }})
+                                    {% else %}
+                                        No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if($.fn.dataTable) {
+                $('table#pass-tables').dataTable();
+            }
+        });
+    </script>
+{% endblock %}

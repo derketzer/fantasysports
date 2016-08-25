@@ -1,0 +1,55 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Ticket' %}
+{% set pageDescription = 'Nuevo ticket' %}
+
+{% set scriptsToLoad = ['pass.js'] %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        <a href="{{ path('fantasy_sports_admin_pass_list') }}">Ticket</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <h4>Cuéntanos tu problema y en breve nos pondremos en contacto contigo para resolverlo</h4>
+
+    <br />
+
+    <div class="row-fluid">
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title"><i class="icon-tag"></i> Ticket</span>
+            </div>
+            <div class="widget-content form-container">
+                <form class="vertical-form" action="{{ path('fantasy_sports_ticket_save') }}" method="POST">
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Resumen</label>
+                        <div class="controls">
+                            <input type="text" class="span12" id="input01" name="summary">
+                            <p class="help-block">El resumen del problema</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="input05">Descripción</label>
+                        <div class="controls">
+                            <textarea class="span12" id="input05" rows="3" name="description"></textarea>
+                            <p class="help-block">Una descripción detallada del problema</p>
+                        </div>
+                    </div>
+
+                    <fieldset>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

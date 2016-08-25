@@ -17,7 +17,8 @@
 
 {% block body %}
     <div class="row-fluid">
-        <div class="span12 widget">
+        {% if not passExist %}
+            <div class="span12 widget">
             <div class="widget-header">
                 <span class="title"><i class="icon-tag"></i> Selecciona tu quiniela</span>
             </div>
@@ -99,5 +100,8 @@
                 </form>
             </div>
         </div>
+        {% else %}
+            <h2>Ya hiciste tu quiniela, regresa pronto para hacer la próxima</h2>
+        {% endif %}
     </div>
 {% endblock %}

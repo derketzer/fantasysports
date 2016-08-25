@@ -24,6 +24,19 @@ class Pase
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Phase")
+     * @ORM\JoinColumn(name="phase_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $phase;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="jornada", type="integer")
+     */
+    private $jornada;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="type", type="integer")
@@ -207,6 +220,38 @@ class Pase
     public function setSerialNumber($serialNumber)
     {
         $this->serialNumber = $serialNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhase()
+    {
+        return $this->phase;
+    }
+
+    /**
+     * @param mixed $phase
+     */
+    public function setPhase($phase)
+    {
+        $this->phase = $phase;
+    }
+
+    /**
+     * @return int
+     */
+    public function getJornada()
+    {
+        return $this->jornada;
+    }
+
+    /**
+     * @param int $jornada
+     */
+    public function setJornada($jornada)
+    {
+        $this->jornada = $jornada;
     }
 }
 

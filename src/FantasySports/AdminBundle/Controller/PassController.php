@@ -19,19 +19,28 @@ class PassController extends Controller
         $week = 1;
 
         $phaseRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Phase');
-        $phase = $phaseRespository->findOneBy(Array('name'=>'week'));
+        $phase = $phaseRespository->findOneBy(['name'=>'week']);
 
-        $sportMatchRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:SportMatch');
-        $matches = $sportMatchRespository->findBy(Array('phase'=>$phase->getId(), 'jornada'=>$week), Array('matchDate'=>'ASC'));
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $vars = Array(
+        $passRepository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Pase');
+        $pass = $passRepository->findOneBy(['phase'=>$phase, 'jornada'=>$week, 'user'=>$user]);
+
+        $matches = null;
+        $passExist = false;
+        if(empty($pass)){
+            $sportMatchRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:SportMatch');
+            $matches = $sportMatchRespository->findBy(['phase'=>$phase->getId(), 'jornada'=>$week], ['matchDate'=>'ASC']);
+        }else{
+            $passExist = true;
+        }
+
+        $vars = [
             'matches' => $matches,
             'phase' => $phase->getId(),
-            'jornada' => $week
-        );
-
-        if(!empty($request->get('match_id')))
-            $vars['match_id'] = $request->get('match_id');
+            'jornada' => $week,
+            'passExist' => $passExist
+        ];
 
         return $this->render('FantasySportsAdminBundle:Pass:pass.html.twig', $vars);
     }
@@ -82,6 +91,11 @@ class PassController extends Controller
         $pase->setStatus(0);
         $pase->setCreatedAt(new \DateTime());
         $pase->setUser($user);
+
+        $phaseRepository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Phase');
+        $phase = $phaseRepository->findOneBy(['id'=>$data['phase']]);
+        $pase->setJornada($data['jornada']);
+        $pase->setPhase($phase);
 
         srand($this->make_seed());
 

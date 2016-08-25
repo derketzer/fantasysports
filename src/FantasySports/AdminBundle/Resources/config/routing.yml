@@ -79,3 +79,23 @@ fantasy_sports_ranking_week:
 fantasy_sports_ranking_general:
     path:     /ranking/general
     defaults: { _controller: FantasySportsAdminBundle:Ranking:rankingGeneral }
+
+fantasy_sports_ticket_new:
+    path:     /ticket
+    defaults: { _controller: FantasySportsAdminBundle:Ticket:new }
+
+fantasy_sports_ticket_list:
+    path:     /tickets
+    defaults: { _controller: FantasySportsAdminBundle:Ticket:list }
+
+fantasy_sports_ticket_save:
+    path:     /ticket/save
+    defaults: { _controller: FantasySportsAdminBundle:Ticket:save }
+
+fantasy_sports_ticket_view:
+    path:     /ticket/{ticketId}
+    defaults: { _controller: FantasySportsAdminBundle:Ticket:view }
+
+fantasy_sports_ticket_answer_save:
+    path:     /ticket/{ticketId}/answer/save
+    defaults: { _controller: FantasySportsAdminBundle:Ticket:answerSave }

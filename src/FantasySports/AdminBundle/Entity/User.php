@@ -32,6 +32,11 @@ class User extends BaseUser
     private $passes;
 
     /**
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="user")
+     */
+    private $tickets;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="registered_at", type="datetime", nullable=true)
@@ -61,6 +66,7 @@ class User extends BaseUser
         $this->rankings = new ArrayCollection();
         $this->transactions = new ArrayCollection();
         $this->coupons = new ArrayCollection();
+        $this->tickets = new ArrayCollection();
     }
 
     /**
@@ -157,5 +163,21 @@ class User extends BaseUser
     public function setTransactions($transactions)
     {
         $this->transactions = $transactions;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * @param mixed $tickets
+     */
+    public function setTickets($tickets)
+    {
+        $this->tickets = $tickets;
     }
 }
