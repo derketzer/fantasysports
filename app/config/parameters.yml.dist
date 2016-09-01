@@ -23,3 +23,4 @@ parameters:
     default_balance:   123
     betfair:           abc
     week:              1
+    week_winners:      10

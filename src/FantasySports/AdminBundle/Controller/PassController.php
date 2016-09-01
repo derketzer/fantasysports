@@ -300,7 +300,7 @@ class PassController extends Controller
 
         $message = \Swift_Message::newInstance()
             ->setSubject('Tu quiniela en Villano Fantasy!')
-            ->setFrom('noreply@villano-fantasy.com')
+            ->setFrom('noreply@villano-fantasy.com', 'Villano Fantasy')
             ->setTo($user->getEmail())
             ->setBody(
                 $mailText,
