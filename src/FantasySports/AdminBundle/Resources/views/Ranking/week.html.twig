@@ -33,11 +33,13 @@
                     <tbody>
                     {% if ranking is defined %}
                         {% for rank in ranking %}
-                            <tr>
-                                <td>{{ rank.position }}</td>
-                                <td>{{ rank.user.username }}</td>
-                                <td>{{ rank.points }}</td>
-                            </tr>
+                            {% if rank.position is not null %}
+                                <tr>
+                                    <td>{{ rank.position }}</td>
+                                    <td>{{ rank.user.username }}</td>
+                                    <td>{{ rank.points }}</td>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                     </tbody>

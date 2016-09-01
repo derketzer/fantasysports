@@ -12,7 +12,7 @@ class IndexController extends Controller
         $phase = $phaseRespository->findOneBy(Array('name'=>'week'));
 
         $sportMatchRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:SportMatch');
-        $matches = $sportMatchRespository->findBy(Array('phase'=>$phase->getId(), 'jornada'=>1), Array('matchDate'=>'ASC'));
+        $matches = $sportMatchRespository->findBy(Array('phase'=>$phase->getId(), 'jornada'=>$this->container->getParameter('week')), Array('matchDate'=>'ASC'));
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 

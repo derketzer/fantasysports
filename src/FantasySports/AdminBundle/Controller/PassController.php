@@ -16,7 +16,7 @@ class PassController extends Controller
 {
     public function addAction(Request $request)
     {
-        $week = 1;
+        $week = $this->container->getParameter('week');
 
         $phaseRespository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Phase');
         $phase = $phaseRespository->findOneBy(['name'=>'week']);
@@ -48,6 +48,7 @@ class PassController extends Controller
     public function saveAction(Request $request)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $wallet = $user->getWallet();
 
         if($wallet->getBalance() <= 0){
@@ -55,6 +56,13 @@ class PassController extends Controller
         }
 
         $data = $request->request->all();
+
+        $passRepository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Pase');
+        $pass = $passRepository->findOneBy(['phase'=>$data['phase'], 'jornada'=>$data['jornada'], 'user'=>$user]);
+        if(!empty($pass)){
+            return $this->redirectToRoute('fantasy_sports_admin_pass_list');
+        }
+
         $path = $this->generateQuinielaPass($data);
 
         $qrUrl = 'https://s3.amazonaws.com/fantasysports.mx/'.$path;
@@ -75,12 +83,15 @@ class PassController extends Controller
 
         $em->flush();
 
-        return $this->render('FantasySportsAdminBundle:Pass:save.html.twig', Array('qrUrl'=>$qrUrl));
+        //return $this->render('FantasySportsAdminBundle:Pass:save.html.twig', Array('qrUrl'=>$qrUrl));
+        return $this->redirectToRoute('fantasy_sports_admin_pass_list');
     }
 
     private function generateQuinielaPass($data)
     {
         $pass = new PKPass();
+
+        $mailText = '';
 
         $em = $this->getDoctrine()->getManager();
 
@@ -96,6 +107,9 @@ class PassController extends Controller
         $phase = $phaseRepository->findOneBy(['id'=>$data['phase']]);
         $pase->setJornada($data['jornada']);
         $pase->setPhase($phase);
+
+        $mailText .= "¡Hola ".$user->getUsername()."!<br /><br />";
+        $mailText .= "Gracias por llenar tu quiniela. Tus selecciones para la jornada ".$data['jornada']." son:<br /><br />";
 
         srand($this->make_seed());
 
@@ -147,8 +161,12 @@ class PassController extends Controller
                 }
 
                 $matchesBackField .= $home.$match->getHomeTeam()->getShortName().$none.$match->getAwayTeam()->getShortName().$away."\n";
+
+                $mailText .= $home.$match->getHomeTeam()->getShortName().$none.$match->getAwayTeam()->getShortName().$away."<br />";
             }else{
                 $matchesBackField .= $match->getHomeTeam()->getShortName().' '.$homeScore.' - '.$awayScore.' '.$match->getAwayTeam()->getShortName()."\n";
+
+                $mailText .= "<br />".$match->getHomeTeam()->getShortName().' '.$homeScore.' - '.$awayScore.' '.$match->getAwayTeam()->getShortName()."<br /><br />";
             }
 
             if($lastMatchDate < $match->getMatchDate()->getTimestamp())
@@ -176,7 +194,7 @@ class PassController extends Controller
             'passTypeIdentifier'  => $this->container->getParameter('apple_pass_identifier'),
             'serialNumber'        => $serialNumber,
             'teamIdentifier'      => $this->container->getParameter('apple_team'),
-            "webServiceURL"       => 'http://local.villano-fantasy.com:8080/pass/register',
+            "webServiceURL"       => 'http://villano-fantasy.com/pass/register',
             "authenticationToken" => "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
             "barcode" => [
                 "message" => $barcode,
@@ -246,7 +264,7 @@ class PassController extends Controller
 
         $result = $pass->create(false);
 
-        if ($result == false) { // Create and output the PKPass
+        if ($result == false) {
             echo $pass->getError();
             exit();
         }
@@ -272,6 +290,24 @@ class PassController extends Controller
 
         $em->persist($pase);
         $em->flush();
+
+        $passUrl = 'https://s3.amazonaws.com/fantasysports.mx/'.$path;
+
+        $mailText .= "<br />Gracias por participar. Si resultas ganador, estarás recibiendo un correo de confirmación que deberás de presentar para hacer válido tu premio.<br />";
+        $mailText .= "<br />Si tienes alguna duda, envíanos un correo a <a href=\"mailto:staff@villano-fantasy.com\">staff@villano-fantasy.com</a>.<br />";
+        //$mailText .= "<br />Para descargar tu pase para Apple Wallet puedes hacerlo  <a href=\"".$passUrl."\">aquí</a>.<br />";
+        $mailText .= "<br />Saludos,<br />Villano Fantasy Staff";
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Tu quiniela en Villano Fantasy!')
+            ->setFrom('noreply@villano-fantasy.com')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $mailText,
+                'text/html'
+            )
+        ;
+        $this->get('mailer')->send($message);
 
         return $path;
     }

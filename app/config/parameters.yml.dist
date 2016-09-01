@@ -22,3 +22,4 @@ parameters:
     apple_pass_identifier: abc
     default_balance:   123
     betfair:           abc
+    week:              1

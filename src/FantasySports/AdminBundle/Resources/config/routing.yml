@@ -99,3 +99,11 @@ fantasy_sports_ticket_view:
 fantasy_sports_ticket_answer_save:
     path:     /ticket/{ticketId}/answer/save
     defaults: { _controller: FantasySportsAdminBundle:Ticket:answerSave }
+
+fantasy_sports_service_califica:
+    path:     /califica
+    defaults: { _controller: FantasySportsAdminBundle:Service:califica }
+
+fantasy_sports_service_ordena:
+    path:     /ordena
+    defaults: { _controller: FantasySportsAdminBundle:Service:ordena }

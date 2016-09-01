@@ -32,7 +32,7 @@ class Ranking
     /**
      * @var int
      *
-     * @ORM\Column(name="position", type="integer")
+     * @ORM\Column(name="position", type="integer", nullable=true)
      */
     private $position;
 
@@ -49,6 +49,13 @@ class Ranking
      * @ORM\Column(name="points", type="integer")
      */
     private $points;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="matchesPoints", type="integer")
+     */
+    private $matchesPoints;
 
     /**
      * @var \DateTime
@@ -69,6 +76,12 @@ class Ranking
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Pase")
+     * @ORM\JoinColumn(name="pase_id", referencedColumnName="id")
+     */
+    private $pass;
 
     /**
      * Get id
@@ -222,6 +235,38 @@ class Ranking
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMatchesPoints()
+    {
+        return $this->matchesPoints;
+    }
+
+    /**
+     * @param int $matchesPoints
+     */
+    public function setMatchesPoints($matchesPoints)
+    {
+        $this->matchesPoints = $matchesPoints;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPass()
+    {
+        return $this->pass;
+    }
+
+    /**
+     * @param mixed $pass
+     */
+    public function setPass($pass)
+    {
+        $this->pass = $pass;
     }
 }
 

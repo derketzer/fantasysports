@@ -12,7 +12,7 @@ class RankingController extends Controller
         $phase = $phaseRespository->findOneBy(Array('name'=>'week'));
 
         $rankingRepository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Ranking');
-        $ranking = $rankingRepository->findBy(['type'=>1, 'week'=>1, 'phase'=>$phase]);
+        $ranking = $rankingRepository->findBy(['type'=>1, 'week'=>$this->container->getParameter('week'), 'phase'=>$phase]);
 
         return $this->render('@FantasySportsAdmin/Ranking/week.html.twig', ['ranking'=>$ranking]);
     }
@@ -23,7 +23,7 @@ class RankingController extends Controller
         $phase = $phaseRespository->findOneBy(Array('name'=>'week'));
 
         $rankingRepository = $this->getDoctrine()->getRepository('FantasySportsAdminBundle:Ranking');
-        $ranking = $rankingRepository->findBy(['type'=>2, 'week'=>1, 'phase'=>$phase]);
+        $ranking = $rankingRepository->findBy(['type'=>2, 'week'=>$this->container->getParameter('week'), 'phase'=>$phase]);
 
         return $this->render('@FantasySportsAdmin/Ranking/general.html.twig', ['ranking'=>$ranking]);
     }

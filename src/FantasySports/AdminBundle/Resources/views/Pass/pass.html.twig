@@ -31,11 +31,11 @@
                                 {% set fecha = "" %}
                                 {% if matches is defined %}
                                     {% for key,match in matches %}
-                                        {% if match.matchDate|date('Y-m-d') != fecha %}
-                                            {% set fecha = match.matchDate|date('Y-m-d') %}
+                                        {% if match.matchDate|date('Y-m-d', 'America/Mexico_City') != fecha %}
+                                            {% set fecha = match.matchDate|date('Y-m-d', 'America/Mexico_City') %}
                                 </div>
                                 <label class="control-label" for="input16">
-                                    <b>{{ match.matchDate|date('l, d F Y') }}</b>
+                                    <b>{{ match.matchDate|date('Y-m-d H:i:s', 'America/Mexico_City')|localizeddate('full', 'none', 'es_MX') }}</b>
                                 </label>
                                 <div class="controls">
                                     <div class="row-fluid">
@@ -55,7 +55,7 @@
                                         {% endif %}
                                         <div class="row-fluid">
                                             <div class="span3">
-                                                {{ match.matchDate|date('H:i') }}
+                                                {{ match.matchDate|date('H:i', 'America/Mexico_City') }}
                                             </div>
                                             {% if key > 3 and (matches[key+1] is not defined or match.matchDate|date('Y-m-d') != matches[key+1].matchDate|date('Y-m-d')) %}
                                                 <div class="span3">
@@ -70,14 +70,14 @@
                                             {% else %}
                                                 <div class="span3">
                                                     <input type="radio" name="matches[{{ match.id }}]" value="0" class="required uniform">
-                                                    {{ match.homeTeam.name }}
+                                                    {{ match.homeTeam.name }} ( {{ match.homeOdds>0?'+':'' }}{{ match.homeOdds }} )
                                                 </div>
                                                 <div class="span3">
                                                     <input type="radio" name="matches[{{ match.id }}]" value="1" class="required uniform">
                                                 </div>
                                                 <div class="span3">
                                                     <input type="radio" name="matches[{{ match.id }}]" value="2" class="required uniform">
-                                                    {{ match.awayTeam.name }}
+                                                    {{ match.awayTeam.name }} ( {{ match.awayOdds>0?'+':'' }}{{ match.awayOdds }} )
                                                 </div>
                                             {% endif %}
                                         </div>
