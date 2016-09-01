@@ -186,27 +186,28 @@ class ServiceController extends Controller
         $phase = $phaseRespository->findOneBy(Array('name'=>'week'));
 
         $rankingRepository = $em->getRepository('FantasySportsAdminBundle:Ranking');
-        $ranking = $rankingRepository->findBy(['week'=>$this->container->getParameter('week'), 'phase'=>$phase, 'type'=>1], ['position'=>'asc'], $this->container->getParameter('week_winners'));
-        $ranking = $ranking[0];
+        $ganadores = $rankingRepository->findBy(['week'=>$this->container->getParameter('week'), 'phase'=>$phase, 'type'=>1], ['position'=>'asc'], $this->container->getParameter('week_winners'));
 
-        if(!empty($ranking)){
-            $emailText = "¡Hola ".$ranking->getUser()->getUsername()."!<br /><br />";
-            $emailText .= "Acabas de ganar la quiniela de la jornada ".$this->container->getParameter('week').".<br /><br />";
+        if(!empty($ganadores)){
+            foreach ($ganadores as $ganador){
+                $emailText = "¡Hola ".$ganador->getUser()->getUsername()."!<br /><br />";
+                $emailText .= "Acabas de ganar la quiniela de la jornada ".$this->container->getParameter('week').".<br /><br />";
 
-            $validoAl = (new \DateTime())->modify('+7 days');
-            $emailText .= "Para hacer válido tu premio necesitas presentar este correo antes del ".$validoAl->format("d-m-Y").".<br /><br />";
-            $emailText .= "Felicidades de parte del Villano Fantasy Staff";
+                $validoAl = (new \DateTime())->modify('+7 days');
+                $emailText .= "Para hacer válido tu premio necesitas presentar este correo antes del ".$validoAl->format("d-m-Y").".<br /><br />";
+                $emailText .= "Felicidades de parte del Villano Fantasy Staff";
 
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Felicidades, ganaste la Villano Fantasy!')
-                ->setFrom('noreply@villano-fantasy.com', 'Villano Fantasy')
-                ->setTo($ranking->getUser()->getEmail())
-                ->setBody(
-                    $emailText,
-                    'text/html'
-                )
-            ;
-            $this->get('mailer')->send($message);
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Felicidades, ganaste la Villano Fantasy!')
+                    ->setFrom('noreply@villano-fantasy.com', 'Villano Fantasy')
+                    ->setTo($ganador->getUser()->getEmail())
+                    ->setBody(
+                        $emailText,
+                        'text/html'
+                    )
+                ;
+                $this->get('mailer')->send($message);
+            }
         }
 
         return new Response('Exito!');
