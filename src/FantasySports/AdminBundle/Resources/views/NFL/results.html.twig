@@ -1,0 +1,65 @@
+{% extends '::Admin/base.html.twig' %}
+
+{% set pageTitle = 'Resultados' %}
+{% set pageDescription = 'Tabla NFL' %}
+
+{% block breadcrumbs %}
+    <li>
+        <i class="icon-home"></i>El Villano Chelero
+        <span class="divider">&raquo;</span>
+    </li>
+    <li>
+        Tabla NFL
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+
+        <div class="span12 widget">
+            <div class="widget-header">
+                <span class="title">Tabla semanal</span>
+            </div>
+            <div class="widget-content table-container">
+                <table id="pass-tables" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Local</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>Visitante</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% if matches is defined %}
+                        {% for match in matches %}
+                            <tr>
+                                <td>{{ match.matchDate|date('Y-m-d', 'America/Mexico_City') }}</td>
+                                <td>{{ match.homeTeam.shortName }}</td>
+                                <td>{{ match.homeScore }}</td>
+                                <td>{{ match.awayScore }}</td>
+                                <td>{{ match.awayTeam.shortName }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if($.fn.dataTable) {
+                $('table#pass-tables').dataTable({
+                    "pageLength": 20
+                });
+            }
+        });
+    </script>
+{% endblock %}

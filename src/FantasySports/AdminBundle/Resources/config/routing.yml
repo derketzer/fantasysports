@@ -111,3 +111,7 @@ fantasy_sports_service_ordena:
 fantasy_sports_service_notifica:
     path:     /notifica
     defaults: { _controller: FantasySportsAdminBundle:Service:notifica }
+
+fantasy_sports_results_nfl:
+    path:     /nfl/results
+    defaults: { _controller: FantasySportsAdminBundle:NFL:results }

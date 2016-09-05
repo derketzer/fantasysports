@@ -6,6 +6,7 @@
     'fantasy_sports_admin_pass_lost'] %}
 {% set dashboardRoutes = ['fantasy_sports_admin_dashboard',
     'fantasy_sports_ranking_week',
+    'fantasy_sports_results_nfl',
     'fantasy_sports_ranking_general'] %}
 {% set inviteRoutes = ['fantasy_sports_admin_transaction_invite',
     'fantasy_sports_admin_transaction_invite_list'] %}
@@ -42,6 +43,11 @@
                     <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_ranking_general' %}active{% endif %}">
                         <a href="{{ path('fantasy_sports_ranking_general') }}">
                             <i class="icol-doc-excel-table"></i> Tabla general
+                        </a>
+                    </li>
+                    <li class="{% if app.request.attributes.get('_route') == 'fantasy_sports_results_nfl' %}active{% endif %}">
+                        <a href="{{ path('fantasy_sports_results_nfl') }}">
+                            <i class="icol-doc-excel-table"></i> Resultados NFL
                         </a>
                     </li>
                 </ul>
