@@ -29,6 +29,9 @@ class ServiceController extends Controller
 
                 foreach($quiniela->getPaseDetails() as $paseDetail){
                     if(in_array($paseDetail->getSportMatch(), $sportMatches)) {
+                        if($paseDetail->getSportMatch()->getHomeScore()==0 && $paseDetail->getSportMatch()->getAwayScore()==0)
+                            continue;
+                        
                         $homeFinalScore = $paseDetail->getSportMatch()->getHomeScore() + $paseDetail->getSportMatch()->getAwayOdds();
                         $awayFinalScore = $paseDetail->getSportMatch()->getAwayScore() + $paseDetail->getSportMatch()->getHomeOdds();
                         $matchScoreDifference = $homeFinalScore - $awayFinalScore;
